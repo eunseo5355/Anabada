@@ -8,6 +8,8 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
+    
+    static let identifier = "PostTableViewCell"
 
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,6 +23,13 @@ class PostTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func bind(_ postData: PostData) {
+        titleLabel.text = postData.title
+        timeLabel.text = "30분전"
+        bigCategoryLabel.text = "빌려줌"
+        commentCountLabel.text = "\(postData.comments.count)"
     }
     
 }

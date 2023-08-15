@@ -16,15 +16,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5nn-r5-ups">
-                        <rect key="frame" x="10" y="9" width="80" height="80"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5nn-r5-ups">
+                        <rect key="frame" x="10" y="11.666666666666664" width="80" height="77"/>
+                        <color key="tintColor" red="0.56077861790000005" green="0.58431535960000003" blue="0.61568397279999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="Ba1-5a-pRz"/>
                             <constraint firstAttribute="height" constant="80" id="UUQ-Qi-a1j"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="GDI-nK-vDc">
-                        <rect key="frame" x="100" y="11.999999999999996" width="95" height="51.666666666666657"/>
+                        <rect key="frame" x="100" y="12.999999999999996" width="95" height="51.666666666666657"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="라켓 빌려드려요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDU-sq-zgp">
                                 <rect key="frame" x="0.0" y="0.0" width="95" height="18"/>
@@ -40,14 +41,14 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="빌려드림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfD-dl-Fnk">
                                 <rect key="frame" x="0.0" y="36" width="95" height="15.666666666666664"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
-                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdX-ha-b2P">
-                        <rect key="frame" x="285.33333333333331" y="71" width="24.666666666666686" height="17"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jdX-ha-b2P">
+                        <rect key="frame" x="283.33333333333331" y="73" width="26.666666666666686" height="17"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bubble.left.and.bubble.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MYE-jE-me9">
                                 <rect key="frame" x="0.0" y="-3.5527136788005009e-15" width="17" height="17.666666666666671"/>
@@ -58,7 +59,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iX9-jV-Uqg">
-                                <rect key="frame" x="17" y="0.0" width="7.6666666666666679" height="17"/>
+                                <rect key="frame" x="19" y="0.0" width="7.6666666666666679" height="17"/>
                                 <color key="tintColor" red="0.56077861790000005" green="0.58431535960000003" blue="0.61568397279999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,12 +70,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="5nn-r5-ups" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="R4h-nb-XB8"/>
+                    <constraint firstAttribute="bottom" secondItem="5nn-r5-ups" secondAttribute="bottom" constant="10" id="Wap-RS-qNL"/>
                     <constraint firstAttribute="trailing" secondItem="jdX-ha-b2P" secondAttribute="trailing" constant="10" id="cyU-at-sU8"/>
                     <constraint firstAttribute="bottom" secondItem="jdX-ha-b2P" secondAttribute="bottom" constant="10" id="gYq-wl-bsm"/>
                     <constraint firstItem="5nn-r5-ups" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jkv-Bh-WPs"/>
                     <constraint firstItem="5nn-r5-ups" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ry7-eg-exW"/>
                     <constraint firstItem="GDI-nK-vDc" firstAttribute="top" secondItem="5nn-r5-ups" secondAttribute="top" constant="3" id="t2f-WG-DYQ"/>
                     <constraint firstItem="GDI-nK-vDc" firstAttribute="leading" secondItem="5nn-r5-ups" secondAttribute="trailing" constant="10" id="xlW-FZ-Y2o"/>
+                    <constraint firstItem="5nn-r5-ups" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ySM-73-USt"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -90,5 +93,6 @@
     </objects>
     <resources>
         <image name="bubble.left.and.bubble.right" catalog="system" width="128" height="96"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
     </resources>
 </document>
