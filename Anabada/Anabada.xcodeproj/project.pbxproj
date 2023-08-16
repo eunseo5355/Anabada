@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		08EF13692A8A0709001101A0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF13682A8A0709001101A0 /* Model.swift */; };
 		08EF136B2A8A0825001101A0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF136A2A8A0825001101A0 /* DataManager.swift */; };
+		08EF13732A8A1B65001101A0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF13722A8A1B65001101A0 /* TabBarController.swift */; };
+		08EF13752A8A30DD001101A0 /* myTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF13742A8A30DD001101A0 /* myTableViewCell.swift */; };
+		08EF13782A8A3CCF001101A0 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF13772A8A3CCF001101A0 /* AddPostViewController.swift */; };
+		08EF137A2A8A3CDA001101A0 /* AddPostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08EF13792A8A3CDA001101A0 /* AddPostViewController.storyboard */; };
 		E20C22052A8A03F20054A586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C22042A8A03F20054A586 /* AppDelegate.swift */; };
 		E20C22072A8A03F20054A586 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C22062A8A03F20054A586 /* SceneDelegate.swift */; };
 		E20C220E2A8A03F40054A586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20C220D2A8A03F40054A586 /* Assets.xcassets */; };
@@ -26,6 +30,10 @@
 /* Begin PBXFileReference section */
 		08EF13682A8A0709001101A0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		08EF136A2A8A0825001101A0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		08EF13722A8A1B65001101A0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		08EF13742A8A30DD001101A0 /* myTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myTableViewCell.swift; sourceTree = "<group>"; };
+		08EF13772A8A3CCF001101A0 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		08EF13792A8A3CDA001101A0 /* AddPostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddPostViewController.storyboard; sourceTree = "<group>"; };
 		E20C22012A8A03F20054A586 /* Anabada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anabada.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20C22042A8A03F20054A586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E20C22062A8A03F20054A586 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08EF13762A8A3CA7001101A0 /* AddPost */ = {
+			isa = PBXGroup;
+			children = (
+				08EF13772A8A3CCF001101A0 /* AddPostViewController.swift */,
+				08EF13792A8A3CDA001101A0 /* AddPostViewController.storyboard */,
+			);
+			path = AddPost;
+			sourceTree = "<group>";
+		};
 		E20C21F82A8A03F20054A586 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +89,7 @@
 		E20C22032A8A03F20054A586 /* Anabada */ = {
 			isa = PBXGroup;
 			children = (
+				08EF13762A8A3CA7001101A0 /* AddPost */,
 				E20C221B2A8A0E920054A586 /* Resource */,
 				E20C22212A8A0FD10054A586 /* Detail */,
 				E20C221A2A8A0E790054A586 /* MyInfo */,
@@ -86,7 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				E20C221D2A8A0F620054A586 /* HomeViewController.swift */,
+				08EF13742A8A30DD001101A0 /* myTableViewCell.swift */,
 				E20C221F2A8A0F700054A586 /* HomeStoryboard.storyboard */,
+				08EF13722A8A1B65001101A0 /* TabBarController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -201,6 +221,7 @@
 				E20C22112A8A03F40054A586 /* LaunchScreen.storyboard in Resources */,
 				E20C220E2A8A03F40054A586 /* Assets.xcassets in Resources */,
 				E20C22202A8A0F700054A586 /* HomeStoryboard.storyboard in Resources */,
+				08EF137A2A8A3CDA001101A0 /* AddPostViewController.storyboard in Resources */,
 				E20C22292A8A10170054A586 /* MyInfoViewController.storyboard in Resources */,
 				E20C22252A8A10000054A586 /* DetailStoryboard.storyboard in Resources */,
 			);
@@ -216,10 +237,13 @@
 				08EF136B2A8A0825001101A0 /* DataManager.swift in Sources */,
 				E20C22052A8A03F20054A586 /* AppDelegate.swift in Sources */,
 				E20C222B2A8A102B0054A586 /* SearchViewController.swift in Sources */,
+				08EF13732A8A1B65001101A0 /* TabBarController.swift in Sources */,
 				E20C22072A8A03F20054A586 /* SceneDelegate.swift in Sources */,
+				08EF13752A8A30DD001101A0 /* myTableViewCell.swift in Sources */,
 				08EF13692A8A0709001101A0 /* Model.swift in Sources */,
 				E20C221E2A8A0F620054A586 /* HomeViewController.swift in Sources */,
 				E20C22272A8A100D0054A586 /* MyInfoViewController.swift in Sources */,
+				08EF13782A8A3CCF001101A0 /* AddPostViewController.swift in Sources */,
 				E20C22232A8A0FF70054A586 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
