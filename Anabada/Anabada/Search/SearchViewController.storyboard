@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,18 +14,49 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="찾기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="af5-lP-tFq">
+                                <rect key="frame" x="20" y="69" width="52" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="EMD-ii-SdW">
+                                <rect key="frame" x="10" y="110" width="373" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="0eN-pp-rQN"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cAY-hM-fBa">
+                                <rect key="frame" x="10" y="166" width="373" height="642"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cAY-hM-fBa" secondAttribute="trailing" constant="10" id="6WF-lO-OuM"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="EMD-ii-SdW" secondAttribute="trailing" constant="10" id="GyL-ff-vPT"/>
+                            <constraint firstItem="EMD-ii-SdW" firstAttribute="top" secondItem="af5-lP-tFq" secondAttribute="bottom" constant="5" id="Ja0-Vg-ELg"/>
+                            <constraint firstItem="af5-lP-tFq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="LMg-H7-UoN"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="cAY-hM-fBa" secondAttribute="bottom" constant="10" id="PuN-FF-cmc"/>
+                            <constraint firstItem="af5-lP-tFq" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="U46-if-SzL"/>
+                            <constraint firstItem="cAY-hM-fBa" firstAttribute="top" secondItem="EMD-ii-SdW" secondAttribute="bottom" id="cAl-4R-lHe"/>
+                            <constraint firstItem="EMD-ii-SdW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="fId-Gt-Icm"/>
+                            <constraint firstItem="cAY-hM-fBa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="iZf-cF-wQo"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="postTableView" destination="cAY-hM-fBa" id="TkM-py-s2Q"/>
+                        <outlet property="searchBar" destination="EMD-ii-SdW" id="OLe-9A-y44"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="-2"/>
+            <point key="canvasLocation" x="46.564885496183201" y="-2.1126760563380285"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

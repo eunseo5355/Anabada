@@ -25,6 +25,8 @@
 		E20C22292A8A10170054A586 /* MyInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20C22282A8A10170054A586 /* MyInfoViewController.storyboard */; };
 		E20C222B2A8A102B0054A586 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C222A2A8A102B0054A586 /* SearchViewController.swift */; };
 		E20C222D2A8A10350054A586 /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20C222C2A8A10350054A586 /* SearchViewController.storyboard */; };
+		E20C22302A8B46FE0054A586 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C222E2A8B46FE0054A586 /* PostTableViewCell.swift */; };
+		E20C22312A8B46FE0054A586 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E20C222F2A8B46FE0054A586 /* PostTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		E20C22282A8A10170054A586 /* MyInfoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyInfoViewController.storyboard; sourceTree = "<group>"; };
 		E20C222A2A8A102B0054A586 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E20C222C2A8A10350054A586 /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
+		E20C222E2A8B46FE0054A586 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		E20C222F2A8B46FE0054A586 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,8 @@
 			children = (
 				E20C222A2A8A102B0054A586 /* SearchViewController.swift */,
 				E20C222C2A8A10350054A586 /* SearchViewController.storyboard */,
+				E20C222E2A8B46FE0054A586 /* PostTableViewCell.swift */,
+				E20C222F2A8B46FE0054A586 /* PostTableViewCell.xib */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -222,6 +228,7 @@
 				E20C220E2A8A03F40054A586 /* Assets.xcassets in Resources */,
 				E20C22202A8A0F700054A586 /* HomeStoryboard.storyboard in Resources */,
 				08EF137A2A8A3CDA001101A0 /* AddPostViewController.storyboard in Resources */,
+				E20C22312A8B46FE0054A586 /* PostTableViewCell.xib in Resources */,
 				E20C22292A8A10170054A586 /* MyInfoViewController.storyboard in Resources */,
 				E20C22252A8A10000054A586 /* DetailStoryboard.storyboard in Resources */,
 			);
@@ -245,6 +252,7 @@
 				E20C22272A8A100D0054A586 /* MyInfoViewController.swift in Sources */,
 				08EF13782A8A3CCF001101A0 /* AddPostViewController.swift in Sources */,
 				E20C22232A8A0FF70054A586 /* DetailViewController.swift in Sources */,
+				E20C22302A8B46FE0054A586 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
