@@ -9,11 +9,28 @@ import UIKit
 
 class MyInfoViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nickNameLabel: UILabel!
+    @IBOutlet weak var editProfileBtn: UIButton!
+    
+    var dataManager = DataManager.shared
+    let myNickName = "Anabada"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        imageView.layer.cornerRadius = imageView.frame.height/2
+        imageView.clipsToBounds = true
+        
+        nickNameLabel.text = myNickName
+        
+        editProfileBtn.setTitle("프로필 수정", for: .normal)
+        editProfileBtn.setTitleColor(UIColor.black, for: .normal)
+        editProfileBtn.layer.cornerRadius = 22.5
+        editProfileBtn.layer.borderWidth = 1
+        editProfileBtn.layer.borderColor = UIColor.systemGray4.cgColor
     }
+
     
 
     /*
