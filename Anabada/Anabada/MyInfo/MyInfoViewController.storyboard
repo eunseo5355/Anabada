@@ -8,7 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+<<<<<<< HEAD
         <!--My Info View Controller-->
+=======
+        <!--Item-->
+>>>>>>> 2e19de0 ([FIX] 카메라 아이콘 색상 수정)
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="MyInfoViewController" id="Y6W-OH-hqX" customClass="MyInfoViewController" customModule="Anabada" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,6 +92,11 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
+<<<<<<< HEAD
+=======
+                    <navigationItem key="navigationItem" id="S50-6b-RfK"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+>>>>>>> 2e19de0 ([FIX] 카메라 아이콘 색상 수정)
                     <connections>
                         <outlet property="editProfileBtn" destination="y8X-sb-Ysx" id="7Xi-sq-WDn"/>
                         <outlet property="imageView" destination="eyC-1v-fBi" id="Dzg-ob-u9O"/>
@@ -117,7 +126,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BJK-Df-4Ur">
+<<<<<<< HEAD
                                 <rect key="frame" x="20" y="190.33333333333334" width="353" height="34"/>
+=======
+                                <rect key="frame" x="20" y="293.33333333333331" width="353" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="oTw-df-ayx"/>
+                                </constraints>
+>>>>>>> 2e19de0 ([FIX] 카메라 아이콘 색상 수정)
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -129,15 +145,24 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pD9-qY-FpU">
+<<<<<<< HEAD
                                 <rect key="frame" x="226.66666666666666" y="90" width="39.999999999999972" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+=======
+                                <rect key="frame" x="226.66666666666666" y="193" width="39.999999999999972" height="40"/>
+>>>>>>> 2e19de0 ([FIX] 카메라 아이콘 색상 수정)
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="89Z-eg-xPt"/>
                                     <constraint firstAttribute="width" constant="40" id="CxB-cw-4bk"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" image="camera.fill" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="camera.fill" catalog="system">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="strokeColor" systemColor="systemGray4Color"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bd6-RJ-hcb"/>
@@ -156,6 +181,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="프로필 수정" id="VMe-rM-WAo"/>
+                    <connections>
+                        <outlet property="cameraButton" destination="pD9-qY-FpU" id="knC-J7-5A2"/>
+                        <outlet property="editedProfileImageView" destination="QDY-Sp-zY3" id="x5k-83-TW7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2D-cc-3u3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -172,6 +201,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
