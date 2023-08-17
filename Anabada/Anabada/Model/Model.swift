@@ -13,6 +13,7 @@ struct PostData {
     var image: String
     var date: String
     var like: Int = 0
+    var likeList: [String]
     var comments: [Comment]
     var bigCategory: String
     var smallCategory: String
