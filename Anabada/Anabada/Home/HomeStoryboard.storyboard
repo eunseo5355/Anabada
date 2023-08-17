@@ -114,11 +114,11 @@
             </objects>
             <point key="canvasLocation" x="666" y="-167"/>
         </scene>
-        <!--Home-->
+        <!--Navigation Controller-->
         <scene sceneID="cyK-ZA-pNk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fi7-6m-GZO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="90k-pu-wdc"/>
+                    <tabBarItem key="tabBarItem" title="" image="house" catalog="system" id="90k-pu-wdc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Qb-Ro-YHc">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>

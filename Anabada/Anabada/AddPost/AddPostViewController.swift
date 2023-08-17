@@ -99,7 +99,7 @@ class AddPostViewController: UIViewController {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let dateString = formatter.string(from: Date())
-            let data = PostData(id: "", title: titleTextView.text, image: "", date: dateString, comments: [], bigCategory: buttonToggle ? "필요해요" : "빌려드려요", smallCategory: "", content: contentTextView.text, nickName: "")
+            let data = PostData(id: "", title: titleTextView.text, image: "", date: dateString, likeList: [],comments: [], bigCategory: buttonToggle ? "필요해요" : "빌려드려요", smallCategory: "", content: contentTextView.text, nickName: "")
             dataManager.addNewPost(newPost: data)
             navigationController?.popViewController(animated: true)
         } else {
