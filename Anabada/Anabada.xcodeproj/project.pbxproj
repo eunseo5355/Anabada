@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		08EF13692A8A0709001101A0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF13682A8A0709001101A0 /* Model.swift */; };
 		08EF136B2A8A0825001101A0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF136A2A8A0825001101A0 /* DataManager.swift */; };
-		08EF13732A8A1B65001101A0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF13722A8A1B65001101A0 /* TabBarController.swift */; };
 		08EF13782A8A3CCF001101A0 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF13772A8A3CCF001101A0 /* AddPostViewController.swift */; };
 		08EF137A2A8A3CDA001101A0 /* AddPostViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08EF13792A8A3CDA001101A0 /* AddPostViewController.storyboard */; };
 		26A92AF12A8DEE9300B6C14A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A92AF02A8DEE9300B6C14A /* EditProfileViewController.swift */; };
@@ -32,7 +31,6 @@
 /* Begin PBXFileReference section */
 		08EF13682A8A0709001101A0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		08EF136A2A8A0825001101A0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		08EF13722A8A1B65001101A0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		08EF13772A8A3CCF001101A0 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		08EF13792A8A3CDA001101A0 /* AddPostViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddPostViewController.storyboard; sourceTree = "<group>"; };
 		26A92AF02A8DEE9300B6C14A /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 			children = (
 				E20C221D2A8A0F620054A586 /* HomeViewController.swift */,
 				E20C221F2A8A0F700054A586 /* HomeStoryboard.storyboard */,
-				08EF13722A8A1B65001101A0 /* TabBarController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -244,7 +241,6 @@
 				08EF136B2A8A0825001101A0 /* DataManager.swift in Sources */,
 				E20C22052A8A03F20054A586 /* AppDelegate.swift in Sources */,
 				E20C222B2A8A102B0054A586 /* SearchViewController.swift in Sources */,
-				08EF13732A8A1B65001101A0 /* TabBarController.swift in Sources */,
 				E20C22072A8A03F20054A586 /* SceneDelegate.swift in Sources */,
 				08EF13692A8A0709001101A0 /* Model.swift in Sources */,
 				E20C221E2A8A0F620054A586 /* HomeViewController.swift in Sources */,

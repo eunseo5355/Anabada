@@ -65,15 +65,8 @@ class MyInfoViewController: UIViewController {
     @IBAction func editProfileButton(_ sender: Any) {
         guard let editProfileViewController = UIStoryboard(name: "MyInfoViewController", bundle: .none).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
         navigationController?.pushViewController(editProfileViewController, animated: true)
-        print("프로필 수정 버튼 클릭됨")
+//        print("프로필 수정 버튼 클릭됨")
     }
-    
-    //    @IBAction func editProfileButton(_ sender: UIButton) {
-//        //        guard let editProfileViewController = UIStoryboard(name: "MyInfoViewController", bundle: .none).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { print("실행안됨"); return }
-//        //        navigationController?.pushViewController(editProfileViewController, animated: true)
-//        //        print("프로필 수정 버튼 클릭됨")
-//        // performSegue(withIdentifier: "EditProfileViewController", sender: nil)
-//    }
     
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
