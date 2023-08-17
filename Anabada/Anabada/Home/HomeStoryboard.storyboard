@@ -19,23 +19,13 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QaA-jT-9Qg">
                                 <rect key="frame" x="10" y="103" width="373" height="666"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myTableViewCell" id="gca-kf-2jP" customClass="myTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Afk-7D-Sv4">
                                         <rect key="frame" x="0.0" y="50" width="373" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gca-kf-2jP" id="Y1z-io-yrd" customClass="MyTableViewCell" customModule="Anabada" customModuleProvider="target">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Afk-7D-Sv4" id="2QT-8Z-FYS">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HIHI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vuT-jp-zqS">
-                                                    <rect key="frame" x="48" y="11" width="33" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="linkColor"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -64,7 +54,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Cp5-vH-YND">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="VtP-7j-N5A">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Z2r-5X-tyj">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Z2r-5X-tyj">
                                 <rect key="frame" x="16" y="5" width="87" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -74,7 +64,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addNewPostButton" destination="MX2-nf-lHJ" id="bJX-M3-LYq"/>
-                        <outlet property="leftButton" destination="Z2r-5X-tyj" id="c2P-GQ-7OY"/>
+                        <outlet property="menuButton" destination="Z2r-5X-tyj" id="c2P-GQ-7OY"/>
                         <outlet property="myTableView" destination="QaA-jT-9Qg" id="u47-aR-xC3"/>
                         <segue destination="YiO-uU-WkL" kind="show" identifier="AddPostViewController" id="aXm-yv-2LT"/>
                     </connections>
@@ -149,10 +139,10 @@
         <!--AddPostViewController-->
         <scene sceneID="jwU-td-jLE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yvD-te-DPM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardIdentifier="AddPostViewController" storyboardName="AddPostViewController" referencedIdentifier="AddPostViewController" id="YiO-uU-WkL" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="oFZ-Mc-p1H"/>
                 </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yvD-te-DPM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2476" y="-2"/>
         </scene>
@@ -161,9 +151,6 @@
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
