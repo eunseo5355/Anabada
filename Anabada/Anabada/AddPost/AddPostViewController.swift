@@ -21,6 +21,10 @@ class AddPostViewController: UIViewController {
     
     var doneButtonToggle = false
     
+    var nowTextView = 0
+    
+    var choiceImage = UIImage(systemName: "photo")
+    
     @IBOutlet var titleTrailingView: UIView!
     
     @IBOutlet var titleTextView: UITextView!
@@ -31,14 +35,52 @@ class AddPostViewController: UIViewController {
     
     @IBOutlet var doneButton: UIButton!
     
+    @IBOutlet var image: UIImageView!
+    
+    @IBOutlet var imageAddButton: UIButton!
+    
+    private let picker = UIImagePickerController()
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardUp(notification:NSNotification) {
+        if nowTextView == 0{
+            
+        } else {
+            if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+
+                let keyboardRectangle = keyboardFrame.cgRectValue
+
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height + 100)
+                })
+            }
+        }
+    }
+    
+    @objc func keyboardDown() {
+        self.view.transform = .identity
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUi()
     }
     
     private func setUpUi(){
+        picker.delegate = self
         titleTextView.delegate = self
         contentTextView.delegate = self
+        image.layer.cornerRadius = 20
         self.navigationController?.navigationBar.tintColor = UIColor.systemGreen
         setUpButton(state:buttonToggle)
         setUpTrailingView()
@@ -52,6 +94,9 @@ class AddPostViewController: UIViewController {
         lend.layer.borderWidth = 1
         lend.layer.borderColor = UIColor.systemGreen.cgColor
         lend.layer.cornerRadius = 15
+        imageAddButton.layer.borderWidth = 1
+        imageAddButton.layer.borderColor = UIColor.systemGreen.cgColor
+        imageAddButton.layer.cornerRadius = 15
         
         UIView.animate(withDuration: 0.3){
             self.borrow.backgroundColor = state == true ? .systemGreen : .clear
@@ -64,7 +109,8 @@ class AddPostViewController: UIViewController {
         borrow.addTarget(self, action: #selector(borrowButtonTapped(sender:)), for: .touchUpInside)
         lend.addTarget(self, action: #selector(lendButtonTapped(sender:)), for: .touchUpInside)
         doneButton.addTarget(self, action: #selector(doneButtonTapped(sender:)), for: .touchUpInside)
-
+        imageAddButton.addTarget(self, action: #selector(addImageButtonTapped(sender:)), for: .touchUpInside)
+        
     }
     
     private func setUpTrailingView(){
@@ -75,7 +121,7 @@ class AddPostViewController: UIViewController {
         contentTrailingView.layer.borderWidth = 1
         titleTrailingView.layer.borderColor = UIColor.systemGray5.cgColor
         contentTrailingView.layer.borderColor = UIColor.systemGray5.cgColor
-
+        
     }
     
     private func changeTrailViewBorder(){
@@ -83,6 +129,13 @@ class AddPostViewController: UIViewController {
             self.titleTrailingView.layer.borderColor = self.titleTextView.text! == "" ? UIColor.systemGray5.cgColor : UIColor.systemGreen.cgColor
             self.contentTrailingView.layer.borderColor = self.contentTextView.text! == "" ? UIColor.systemGray5.cgColor : UIColor.systemGreen.cgColor
         }
+    }
+    
+    @objc func addImageButtonTapped(sender:UIButton){
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        
+        self.present(picker, animated: true)
     }
     
     @objc func borrowButtonTapped(sender:UIButton){
@@ -124,7 +177,12 @@ class AddPostViewController: UIViewController {
             }
             
         }
+        self.view.endEditing(true)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+         self.view.endEditing(true)
+   }
     
 }
 
@@ -136,16 +194,48 @@ extension AddPostViewController: UITextViewDelegate{
         } else {
             doneButtonToggle = false
         }
+        
         setUpButton(state: buttonToggle)
         changeTrailViewBorder()
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+
+        if textView == self.titleTextView{
+            self.nowTextView = 0
+        } else {
+            self.nowTextView = 1
+        }
     }
 }
 
 extension UIView {
+    
     func shake() {
+
         self.transform = CGAffineTransform(translationX: 20, y: 0)
+        
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
             self.transform = CGAffineTransform.identity
         }, completion: nil)
+        
     }
+    
+}
+
+extension AddPostViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        picker.dismiss(animated: true){ () in
+            let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+            self.choiceImage = img
+            self.image.image = img
+        }
+        
+    }
+    
 }
