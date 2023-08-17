@@ -8,39 +8,102 @@
 import UIKit
 
 class MyInfoViewController: UIViewController {
-
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var editProfileBtn: UIButton!
+    @IBOutlet weak var myPostTableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    var dataManager = DataManager.shared
-    let myNickName = "Anabada"
+    let dataManager = DataManager.shared
+    
+    var filteredPostData: [PostData] = []
+    
+    let myNickName = "룬"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        imageView.layer.cornerRadius = imageView.frame.height/2
-        imageView.clipsToBounds = true
+        
+        setImageView()
+        setButtonLayer()
+        setSegmentedControl()
+        setTableView()
         
         nickNameLabel.text = myNickName
-        
-        editProfileBtn.setTitle("프로필 수정", for: .normal)
-        editProfileBtn.setTitleColor(UIColor.black, for: .normal)
+    }
+    
+    private func setImageView() {
+        imageView.image = UIImage(named: "룬")
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = imageView.frame.height/2
+        imageView.clipsToBounds = true
+    }
+    
+    private func setButtonLayer() {
         editProfileBtn.layer.cornerRadius = 22.5
         editProfileBtn.layer.borderWidth = 1
         editProfileBtn.layer.borderColor = UIColor.systemGray4.cgColor
     }
-
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setSegmentedControl() {
+        let myPostCount = dataManager.postData.filter { $0.nickName == myNickName }.count
+        let myLikeCount = dataManager.postData.filter { $0.likeList.contains(myNickName) }.count
+        segmentedControl.setTitle("나의 게시글 \(myPostCount)", forSegmentAt: 0)
+        segmentedControl.setTitle("나의 좋아요 \(myLikeCount)", forSegmentAt: 1)
     }
-    */
-
+    
+    private func setTableView() {
+        myPostTableView.delegate = self
+        myPostTableView.dataSource = self
+        
+        let nib = UINib(nibName: PostTableViewCell.identifier, bundle: nil)
+        myPostTableView.register(nib, forCellReuseIdentifier: PostTableViewCell.identifier)
+        
+        filteredPostData = dataManager.postData.filter { $0.nickName == myNickName }
+    }
+    
+    @IBAction func editProfileButton(_ sender: Any) {
+        guard let editProfileViewController = UIStoryboard(name: "MyInfoViewController", bundle: .none).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
+        navigationController?.pushViewController(editProfileViewController, animated: true)
+        print("프로필 수정 버튼 클릭됨")
+    }
+    
+    //    @IBAction func editProfileButton(_ sender: UIButton) {
+//        //        guard let editProfileViewController = UIStoryboard(name: "MyInfoViewController", bundle: .none).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { print("실행안됨"); return }
+//        //        navigationController?.pushViewController(editProfileViewController, animated: true)
+//        //        print("프로필 수정 버튼 클릭됨")
+//        // performSegue(withIdentifier: "EditProfileViewController", sender: nil)
+//    }
+    
+    @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            filteredPostData = dataManager.postData.filter { $0.nickName == myNickName }
+            myPostTableView.reloadData()
+        } else if sender.selectedSegmentIndex == 1 {
+            filteredPostData = dataManager.postData.filter { $0.likeList.contains(myNickName) }
+            myPostTableView.reloadData()
+        }
+    }
 }
+
+extension MyInfoViewController: UITableViewDelegate {
+    
+}
+
+extension MyInfoViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredPostData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = myPostTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as? PostTableViewCell
+        else { return UITableViewCell() }
+        
+        cell.bind(filteredPostData[indexPath.row])
+        
+        return cell
+    }
+}
+
+
+

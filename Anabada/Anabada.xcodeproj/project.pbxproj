@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		08EF13692A8A0709001101A0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF13682A8A0709001101A0 /* Model.swift */; };
 		08EF136B2A8A0825001101A0 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF136A2A8A0825001101A0 /* DataManager.swift */; };
+		26A92AF12A8DEE9300B6C14A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A92AF02A8DEE9300B6C14A /* EditProfileViewController.swift */; };
 		E20C22052A8A03F20054A586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C22042A8A03F20054A586 /* AppDelegate.swift */; };
 		E20C22072A8A03F20054A586 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C22062A8A03F20054A586 /* SceneDelegate.swift */; };
 		E20C220E2A8A03F40054A586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20C220D2A8A03F40054A586 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		08EF13682A8A0709001101A0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		08EF136A2A8A0825001101A0 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		26A92AF02A8DEE9300B6C14A /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		E20C22012A8A03F20054A586 /* Anabada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anabada.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20C22042A8A03F20054A586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E20C22062A8A03F20054A586 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				E20C22262A8A100D0054A586 /* MyInfoViewController.swift */,
 				E20C22282A8A10170054A586 /* MyInfoViewController.storyboard */,
+				26A92AF02A8DEE9300B6C14A /* EditProfileViewController.swift */,
 			);
 			path = MyInfo;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				E20C221E2A8A0F620054A586 /* HomeViewController.swift in Sources */,
 				E20C22272A8A100D0054A586 /* MyInfoViewController.swift in Sources */,
 				E20C22232A8A0FF70054A586 /* DetailViewController.swift in Sources */,
+				26A92AF12A8DEE9300B6C14A /* EditProfileViewController.swift in Sources */,
 				E20C22302A8B46FE0054A586 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
