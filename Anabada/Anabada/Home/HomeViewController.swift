@@ -25,16 +25,20 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myTableView.dataSource = self
         setUpUi()
-        self.navigationController?.navigationBar.topItem?.title = ""
-        let nib = UINib(nibName: PostTableViewCell.identifier, bundle: nil)
-        myTableView.register(nib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
     
     private func setUpUi() {
+        self.navigationController?.navigationBar.topItem?.title = ""
         makeNaviLeftButton(state: "전체")
         setUpAddNewPostButton()
+        setUpTableView()
+    }
+    
+    private func setUpTableView(){
+        let nib = UINib(nibName: PostTableViewCell.identifier, bundle: nil)
+        myTableView.dataSource = self
+        myTableView.register(nib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
     
     private func setUpAddNewPostButton() {
@@ -49,33 +53,27 @@ class HomeViewController: UIViewController {
             self.state = "total"
             self.myTableView.reloadData()
             self.makeNaviLeftButton(state: "전체")
-            self.menuButtonDownAnimate(sender: self.menuButton)
         })
         
         let borrow = UIAction(title: "필요해요", handler: { _ in
             self.state = "borrow"
             self.myTableView.reloadData()
             self.makeNaviLeftButton(state: "필요해요")
-            self.menuButtonDownAnimate(sender: self.menuButton)
         })
         
         let lend = UIAction(title: "빌려드려요", handler: { _ in
             self.state = "lend"
             self.myTableView.reloadData()
             self.makeNaviLeftButton(state: "빌려드려요")
-            self.menuButtonDownAnimate(sender: self.menuButton)
         })
         
-        let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in
-            self.menuButtonDownAnimate(sender: self.menuButton)
-        })
+        let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in })
         let menu = UIMenu(identifier: nil, options: .displayInline, children: [total, borrow, lend, cancel])
-
+        
         menuButton.setTitle(state, for: .normal)
         var newSize = menuButton.intrinsicContentSize
         newSize.width += 10
         menuButton.frame.size = newSize
-        menuButton.addTarget(self, action: #selector(menuButtonTapped(sender:)), for: .touchDown)
         menuButton.menu = menu
         menuButton.showsMenuAsPrimaryAction = true
     }
@@ -84,21 +82,6 @@ class HomeViewController: UIViewController {
         performSegue(withIdentifier: "AddPostViewController", sender: nil)
     }
     
-    @objc func menuButtonTapped(sender: UIButton) {
-        menuButtonUpAnimate(sender: menuButton)
-    }
-    
-    private func menuButtonDownAnimate(sender: UIButton) {
-        UIView.transition(with: sender, duration: 0.3, options: .transitionFlipFromBottom, animations: {
-            sender.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        }, completion: nil)
-    }
-    
-    private func menuButtonUpAnimate(sender: UIButton) {
-        UIView.transition(with: sender, duration: 0.3, options: .transitionFlipFromTop, animations: {
-            sender.setImage(UIImage(systemName: "chevron.up"), for: .normal)
-        }, completion: nil)
-    }
 }
 
 extension HomeViewController: UITableViewDataSource {

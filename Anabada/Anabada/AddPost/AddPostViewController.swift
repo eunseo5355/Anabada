@@ -33,13 +33,13 @@ class AddPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleTextView.delegate = self
-        contentTextView.delegate = self
         setUpUi()
-        
     }
     
     private func setUpUi(){
+        titleTextView.delegate = self
+        contentTextView.delegate = self
+        self.navigationController?.navigationBar.tintColor = UIColor.systemGreen
         setUpButton(state:buttonToggle)
         setUpTrailingView()
     }
@@ -61,12 +61,28 @@ class AddPostViewController: UIViewController {
             self.doneButton.tintColor = self.doneButtonToggle ? UIColor.systemGreen : UIColor.systemGray5
         }
         
-
-        
         borrow.addTarget(self, action: #selector(borrowButtonTapped(sender:)), for: .touchUpInside)
         lend.addTarget(self, action: #selector(lendButtonTapped(sender:)), for: .touchUpInside)
         doneButton.addTarget(self, action: #selector(doneButtonTapped(sender:)), for: .touchUpInside)
 
+    }
+    
+    private func setUpTrailingView(){
+        titleTrailingView.layer.cornerRadius = 15
+        titleTrailingView.layer.borderWidth = 1
+        
+        contentTrailingView.layer.cornerRadius = 15
+        contentTrailingView.layer.borderWidth = 1
+        titleTrailingView.layer.borderColor = UIColor.systemGray5.cgColor
+        contentTrailingView.layer.borderColor = UIColor.systemGray5.cgColor
+
+    }
+    
+    private func changeTrailViewBorder(){
+        UIView.animate(withDuration: 0.5){
+            self.titleTrailingView.layer.borderColor = self.titleTextView.text! == "" ? UIColor.systemGray5.cgColor : UIColor.systemGreen.cgColor
+            self.contentTrailingView.layer.borderColor = self.contentTextView.text! == "" ? UIColor.systemGray5.cgColor : UIColor.systemGreen.cgColor
+        }
     }
     
     @objc func borrowButtonTapped(sender:UIButton){
@@ -86,25 +102,50 @@ class AddPostViewController: UIViewController {
             let data = PostData(id: "", title: titleTextView.text, image: "", date: dateString, comments: [], bigCategory: buttonToggle ? "필요해요" : "빌려드려요", smallCategory: "", content: contentTextView.text, nickName: "")
             dataManager.addNewPost(newPost: data)
             navigationController?.popViewController(animated: true)
+        } else {
+            
+            if titleTextView.text! == "" && contentTextView.text! == ""{
+                UIView.animate(withDuration: 0.5){
+                    self.titleTrailingView.layer.borderColor = UIColor.red.cgColor
+                    self.contentTrailingView.layer.borderColor = UIColor.red.cgColor
+                }
+                self.titleTrailingView.shake()
+                self.contentTrailingView.shake()
+            } else if titleTextView.text! == ""{
+                UIView.animate(withDuration: 0.5){
+                    self.titleTrailingView.layer.borderColor = UIColor.red.cgColor
+                }
+                self.titleTrailingView.shake()
+            } else if contentTextView.text! == ""{
+                UIView.animate(withDuration: 0.5){
+                    self.contentTrailingView.layer.borderColor = UIColor.red.cgColor
+                }
+                self.contentTrailingView.shake()
+            }
+            
         }
     }
     
-    private func setUpTrailingView(){
-        titleTrailingView.layer.cornerRadius = 15
-        titleTrailingView.layer.borderWidth = 1
-        titleTrailingView.layer.borderColor = UIColor.systemGray5.cgColor
-        contentTrailingView.layer.cornerRadius = 15
-        contentTrailingView.layer.borderWidth = 1
-        contentTrailingView.layer.borderColor = UIColor.systemGray5.cgColor
-    }
 }
 
 extension AddPostViewController: UITextViewDelegate{
     func textViewDidChange(_ textView: UITextView) {
         
-        if titleTextView.text != "" && contentTextView.text != ""{doneButtonToggle = true} else {
+        if titleTextView.text != "" && contentTextView.text != "" {
+            doneButtonToggle = true
+        } else {
             doneButtonToggle = false
         }
         setUpButton(state: buttonToggle)
+        changeTrailViewBorder()
+    }
+}
+
+extension UIView {
+    func shake() {
+        self.transform = CGAffineTransform(translationX: 20, y: 0)
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
+            self.transform = CGAffineTransform.identity
+        }, completion: nil)
     }
 }
