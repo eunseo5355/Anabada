@@ -6,16 +6,18 @@
 //
 
 import Foundation
+import UIKit
 
 
 class DataManager {
     
     static let shared = DataManager()
     
-    var postData: [PostData] = [PostData(id: "", title: "라켓", image: "", date: "", likeList: ["룬", "랑"], comments: [Comment(nickName: "", content: "", date: "")], bigCategory: "", smallCategory: "", content: "", nickName: "은서"),
-                                PostData(id: "", title: "게임칩", image: "", date: "", likeList: ["은서"], comments: [Comment(nickName: "", content: "", date: "")], bigCategory: "", smallCategory: "", content: "", nickName: "랑"),
-                                PostData(id: "", title: "안마기", image: "", date: "", likeList: [""], comments: [Comment(nickName: "", content: "", date: "")], bigCategory: "", smallCategory: "", content: "", nickName: "룬"),
-                                PostData(id: "", title: "무선키보드", image: "", date: "", likeList: [""], comments: [Comment(nickName: "", content: "", date: "")], bigCategory: "", smallCategory: "", content: "", nickName: "룬"),
+    var postData: [PostData] = [
+        PostData(id: "", title: "책", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "은서"),
+        PostData(id: "", title: "연필", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "준영"),
+        PostData(id: "", title: "거울", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "이랑"),
+        PostData(id: "", title: "안경", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "영하")
     ]
     
     func addNewPost(newPost:PostData){

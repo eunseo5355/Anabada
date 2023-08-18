@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 struct PostData {
     var id: String
     var title: String
-    var image: String
+    var image: UIImage?
     var date: String
     var like: Int = 0
     var likeList: [String]
