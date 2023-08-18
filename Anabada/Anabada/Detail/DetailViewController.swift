@@ -8,39 +8,34 @@
 import UIKit
 
 
-
 class DetailViewController: UIViewController {
-    
     
     var postData: PostData?
     
-    var image1: String?
+    @IBOutlet weak var postImage: UIImageView!
     
-    @IBOutlet weak var ImageView: UIScrollView!
+    @IBOutlet weak var nickNameLabel: UILabel!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var heartButton: UIButton!
+    
+    @IBOutlet weak var contentsTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        ImageView.UIImage = image1
-//       let image1 = UIImage(named: "catImage1")
+        
+        
     }
     
-    
-    @IBOutlet weak var BackButton: UINavigationBar!
-    
-    @IBOutlet weak var UserProfileLabel: UILabel!
-    
-    @IBOutlet weak var StatusButton: UIButton!
-    
-    @IBOutlet weak var HeartButton: UIButton!
-    
-    @IBOutlet weak var CommentLabel: UIButton!
-    
-   
+    func bind(_ postData: PostData) {
+        postImage.image = postData.image
+        nickNameLabel.text = postData.nickName
+        titleLabel.text = postData.title
+        //           heartButton.UIButton = postData.UIButton//
+        contentsTextView.text = "\(postData.content)"
         
-
-
         
+    }
     
-
-
 }
