@@ -74,7 +74,6 @@
                         <outlet property="menuButton" destination="PR1-Dd-M2n" id="OQ1-YD-Hpo"/>
                         <outlet property="myTableView" destination="QaA-jT-9Qg" id="u47-aR-xC3"/>
                         <segue destination="YiO-uU-WkL" kind="show" identifier="AddPostViewController" id="aXm-yv-2LT"/>
-                        <segue destination="DGv-zr-nL1" kind="show" identifier="DetailViewController" id="oJx-px-ESl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -153,17 +152,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yvD-te-DPM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-176" y="1889"/>
+            <point key="canvasLocation" x="217" y="1890"/>
         </scene>
         <!--DetailViewController-->
-        <scene sceneID="nlL-1k-xZW">
+        <scene sceneID="1ie-aO-t9W">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="DetailViewController" storyboardName="DetailStoryboard" referencedIdentifier="DetailViewController" id="DGv-zr-nL1" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="CdY-eG-nIe"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DEQ-Xd-tkS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="DetailViewController" storyboardName="DetailStoryboard" referencedIdentifier="DetailViewController" id="Dnw-la-p8O" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="obZ-zO-ZYg"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="93v-ZJ-fOD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="624" y="1889"/>
+            <point key="canvasLocation" x="527" y="1890"/>
         </scene>
         <!--Item-->
         <scene sceneID="mDA-ga-3sF">

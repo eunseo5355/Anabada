@@ -88,7 +88,11 @@ class HomeViewController: UIViewController {
     
     func tableviewReload(){
         UIView.transition(with: myTableView,duration: 0.5,options: .transitionCrossDissolve,animations: { self.myTableView.reloadData() })
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination as? DetailViewController else { return }
+       
     }
     
 }
@@ -112,9 +116,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = DetailViewController()
-        vc.postData = filterData[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
+        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else { return }
+        nextVC.bind(filterData[indexPath.row])
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
 }

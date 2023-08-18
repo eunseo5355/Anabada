@@ -12,29 +12,45 @@ class DetailViewController: UIViewController {
     
     var postData: PostData?
     
-    @IBOutlet weak var postImage: UIImageView!
+    var dataManager = DataManager.shared
     
-    @IBOutlet weak var nickNameLabel: UILabel!
+    @IBOutlet var postImage: UIImageView!
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var profileImage: UIImageView!
     
-    @IBOutlet weak var heartButton: UIButton!
+    @IBOutlet var nickNameLabel: UILabel!
     
-    @IBOutlet weak var contentsTextView: UITextView!
+    @IBOutlet var titleLabel: UILabel!
+    
+    @IBOutlet var contentTextView: UITextView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        setUpUi()
     }
+    
+    func setUpUi(){
+        
+        var profileData = dataManager.userData.filter{$0.nickName == postData?.nickName}
+        
+        if profileData.count == 1{
+            self.profileImage.image = profileData[0].profileImage
+        } else {
+            self.profileImage.image = UIImage(systemName: "person")
+        }
+        self.postImage.image = postData?.image
+        self.nickNameLabel.text = postData?.nickName
+        self.titleLabel.text = postData?.title
+        self.contentTextView.text = postData?.content
+        self.navigationController?.navigationBar.tintColor = UIColor.systemGreen
+    }
+    
     func bind(_ postData: PostData) {
-        postImage.image = postData.image
-        nickNameLabel.text = postData.nickName
-        titleLabel.text = postData.title
-        //           heartButton.UIButton = postData.UIButton//
-        contentsTextView.text = "\(postData.content)"
-        
-        
+        self.postData = postData
     }
     
 }
