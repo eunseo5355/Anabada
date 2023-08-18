@@ -33,6 +33,22 @@ class DetailViewController: UIViewController {
         setUpUi()
     }
     
+    func setUpUi(){
+        
+        var profileData = dataManager.userData.filter{$0.nickName == postData?.nickName}
+        
+        if profileData.count == 1{
+            self.profileImage.image = profileData[0].profileImage
+        } else {
+            self.profileImage.image = UIImage(systemName: "person")
+        }
+        self.postImage.image = postData?.image
+        self.nickNameLabel.text = postData?.nickName
+        self.titleLabel.text = postData?.title
+        self.contentTextView.text = postData?.content
+        self.navigationController?.navigationBar.tintColor = UIColor.systemGreen
+    }
+    
     func bind(_ postData: PostData) {
         self.postData = postData
     }

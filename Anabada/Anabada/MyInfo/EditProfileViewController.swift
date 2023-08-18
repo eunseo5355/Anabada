@@ -24,7 +24,7 @@ class EditProfileViewController: UIViewController {
     }
     
     private func setEditedImageView() {
-        editedProfileImageView.image = UIImage(named: "룬")
+        editedProfileImageView.image = dataManager.myInfo.profileImage
         editedProfileImageView.contentMode = .scaleAspectFill
         editedProfileImageView.layer.cornerRadius = editedProfileImageView.frame.height/2
         editedProfileImageView.clipsToBounds = true
@@ -37,7 +37,7 @@ class EditProfileViewController: UIViewController {
     
     @objc private func buttonPressed(_ sender: Any) {
         if let newNickName = newNickName.text, newNickName != "" {
-            dataManager.myNickName = newNickName
+            dataManager.myInfo.nickName = newNickName
         }
         navigationController?.popViewController(animated: true)
     }
@@ -56,7 +56,7 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.editedProfileImageView.image = selectedImage
-            dataManager.myProfileImage = selectedImage
+            dataManager.myInfo.profileImage = selectedImage
         }
         dismiss(animated: true, completion: nil)
     }

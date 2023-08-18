@@ -21,8 +21,8 @@ class MyInfoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
-        nickNameLabel.text = dataManager.myNickName
-        imageView.image = dataManager.myProfileImage
+        nickNameLabel.text = dataManager.myInfo.nickName
+        imageView.image = dataManager.myInfo.profileImage
     }
     
     override func viewDidLoad() {
@@ -48,8 +48,8 @@ class MyInfoViewController: UIViewController {
     }
     
     private func setSegmentedControl() {
-        let myPostCount = dataManager.postData.filter { $0.nickName == dataManager.myNickName }.count
-        let myLikeCount = dataManager.postData.filter { $0.likeList.contains(dataManager.myNickName) }.count
+        let myPostCount = dataManager.postData.filter { $0.nickName == dataManager.myInfo.nickName }.count
+        let myLikeCount = dataManager.postData.filter { $0.likeList.contains(dataManager.myInfo.nickName) }.count
         segmentedControl.setTitle("나의 게시글 \(myPostCount)", forSegmentAt: 0)
         segmentedControl.setTitle("나의 좋아요 \(myLikeCount)", forSegmentAt: 1)
     }
@@ -61,7 +61,7 @@ class MyInfoViewController: UIViewController {
         let nib = UINib(nibName: PostTableViewCell.identifier, bundle: nil)
         myPostTableView.register(nib, forCellReuseIdentifier: PostTableViewCell.identifier)
         
-        filteredPostData = dataManager.postData.filter { $0.nickName == dataManager.myNickName }
+        filteredPostData = dataManager.postData.filter { $0.nickName == dataManager.myInfo.nickName }
     }
     
     private func touchUpBackButton() {
@@ -77,10 +77,10 @@ class MyInfoViewController: UIViewController {
     
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            filteredPostData = dataManager.postData.filter { $0.nickName == dataManager.myNickName }
+            filteredPostData = dataManager.postData.filter { $0.nickName == dataManager.myInfo.nickName }
             myPostTableView.reloadData()
         } else if sender.selectedSegmentIndex == 1 {
-            filteredPostData = dataManager.postData.filter { $0.likeList.contains(dataManager.myNickName) }
+            filteredPostData = dataManager.postData.filter { $0.likeList.contains(dataManager.myInfo.nickName) }
             myPostTableView.reloadData()
         }
     }
