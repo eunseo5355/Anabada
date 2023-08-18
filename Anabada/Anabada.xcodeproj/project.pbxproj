@@ -19,7 +19,7 @@
 		E20C221E2A8A0F620054A586 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C221D2A8A0F620054A586 /* HomeViewController.swift */; };
 		E20C22202A8A0F700054A586 /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20C221F2A8A0F700054A586 /* HomeStoryboard.storyboard */; };
 		E20C22232A8A0FF70054A586 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C22222A8A0FF70054A586 /* DetailViewController.swift */; };
-		E20C22252A8A10000054A586 /* DetailStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20C22242A8A10000054A586 /* DetailStoryboard.storyboard */; };
+		E20C22252A8A10000054A586 /* DetailStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20C22242A8A10000054A586 /* DetailStoryboard.storyboard */; settings = {ASSET_TAGS = (catImage1, ); }; };
 		E20C22272A8A100D0054A586 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C22262A8A100D0054A586 /* MyInfoViewController.swift */; };
 		E20C22292A8A10170054A586 /* MyInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E20C22282A8A10170054A586 /* MyInfoViewController.storyboard */; };
 		E20C222B2A8A102B0054A586 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20C222A2A8A102B0054A586 /* SearchViewController.swift */; };
@@ -189,6 +189,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					catImage1,
+				);
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {

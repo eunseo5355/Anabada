@@ -1,29 +1,46 @@
 //
-//  DetailViewController.swift
+//  DetailViewcontroller.swift
 //  Anabada
 //
-//  Created by 배은서 on 2023/08/14.
+//  Created by 손영하  on 2023/08/18.
 //
 
 import UIKit
 
-class DetailViewController: UIViewController {
 
+
+class DetailViewController: UIViewController {
+    
+    
+    var postData: PostData?
+    
+    var image1: String?
+    
+    @IBOutlet weak var ImageView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+//        ImageView.UIImage = image1
+//       let image1 = UIImage(named: "catImage1")
     }
     
+    
+    @IBOutlet weak var BackButton: UINavigationBar!
+    
+    @IBOutlet weak var UserProfileLabel: UILabel!
+    
+    @IBOutlet weak var StatusButton: UIButton!
+    
+    @IBOutlet weak var HeartButton: UIButton!
+    
+    @IBOutlet weak var CommentLabel: UIButton!
+    
+   
+        
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        
+    
+
 
 }
