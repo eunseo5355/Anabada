@@ -19,11 +19,12 @@ class HomeViewController: UIViewController {
     
     private var state = "total"
     
-    private var choiceId = 0
+    private var filterData:[PostData] = []
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tableviewReload()
         self.navigationController?.isNavigationBarHidden = true
+        self.filterData = self.dataManager.postData
+        self.tableviewReload()
     }
     
     override func viewDidLoad() {
@@ -54,20 +55,23 @@ class HomeViewController: UIViewController {
         
         let total = UIAction(title: "전체", handler: { _ in
             self.state = "total"
-            self.tableviewReload()
+            self.filterData = self.dataManager.postData
             self.menuButton.setTitle("전체", for: .normal)
+            self.tableviewReload()
         })
         
         let borrow = UIAction(title: "필요해요", handler: { _ in
             self.state = "borrow"
-            self.tableviewReload()
+            self.filterData = self.dataManager.postData.filter{$0.bigCategory == "필요해요"}
             self.menuButton.setTitle("필요해요", for: .normal)
+            self.tableviewReload()
         })
         
         let lend = UIAction(title: "빌려드려요", handler: { _ in
             self.state = "lend"
-            self.tableviewReload()
+            self.filterData = self.dataManager.postData.filter{$0.bigCategory == "빌려드려요"}
             self.menuButton.setTitle("빌려드려요", for: .normal)
+            self.tableviewReload()
         })
         
         let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in })
@@ -86,34 +90,20 @@ class HomeViewController: UIViewController {
         UIView.transition(with: myTableView,duration: 0.5,options: .transitionCrossDissolve,animations: { self.myTableView.reloadData() })
         
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? DetailViewController else { return }
-    }
     
 }
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if state == "borrow"{
-            return dataManager.postData.filter{$0.bigCategory == "필요해요"}.count
-        } else if state == "lend"{
-            return dataManager.postData.filter{$0.bigCategory == "빌려드려요"}.count
-        } else {
-            return dataManager.postData.count
-        }
+      
+        return filterData.count
 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = myTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as? PostTableViewCell else { return UITableViewCell() }
-        if state == "borrow"{
-            cell.bind(dataManager.postData.filter{$0.bigCategory == "필요해요"}[indexPath.row])
-        } else if state == "lend"{
-            cell.bind(dataManager.postData.filter{$0.bigCategory == "빌려드려요"}[indexPath.row])
-        } else {
-            cell.bind(dataManager.postData[indexPath.row])
-        }
+        cell.bind(filterData[indexPath.row])
         return cell
     }
     
@@ -123,8 +113,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController()
-        vc.post
-        self.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+        vc.postData = filterData[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
