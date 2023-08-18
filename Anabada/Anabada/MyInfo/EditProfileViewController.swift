@@ -54,9 +54,9 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            self.editedProfileImageView.image = image
-            dataManager.myProfileImage = image
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.editedProfileImageView.image = selectedImage
+            dataManager.myProfileImage = selectedImage
         }
         dismiss(animated: true, completion: nil)
     }

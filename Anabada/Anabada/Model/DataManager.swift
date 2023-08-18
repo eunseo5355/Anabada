@@ -20,8 +20,17 @@ class DataManager {
         PostData(id: "", title: "안경", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "영하")
     ]
     
+<<<<<<< HEAD
     var myNickName: String = "룬"
     var myProfileImage = UIImage(named: "룬")
+=======
+    var userData: [UserInfo] = [
+        UserInfo(nickName: "은서", profileImage: UIImage(systemName: "person.fill")),
+        UserInfo(nickName: "준영", profileImage: UIImage(systemName: "folder")),
+        UserInfo(nickName: "이랑", profileImage: UIImage(systemName: "person")),
+        UserInfo(nickName: "영하", profileImage: UIImage(systemName: "person")),
+    ]
+>>>>>>> 579135043a16904ba355ca417cf254080973c91c
     
     func addNewPost(newPost:PostData){
         postData.insert(newPost, at: 0)

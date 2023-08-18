@@ -27,3 +27,9 @@ struct Comment {
     var content: String
     var date: String
 }
+
+
+struct UserInfo{
+    var nickName: String
+    var profileImage: UIImage?
+}

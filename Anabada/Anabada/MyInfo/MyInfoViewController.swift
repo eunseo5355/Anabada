@@ -96,6 +96,7 @@ extension MyInfoViewController: UITableViewDelegate {
         navigationController?.pushViewController(detailViewController, animated: true)
         detailViewController.postData = dataManager.postData[indexPath.row]
     }
+    
 }
 
 extension MyInfoViewController: UITableViewDataSource {
@@ -111,7 +112,7 @@ extension MyInfoViewController: UITableViewDataSource {
         
         return cell
     }
-
+    
 }
 
 
