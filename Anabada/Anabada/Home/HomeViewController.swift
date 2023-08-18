@@ -19,6 +19,8 @@ class HomeViewController: UIViewController {
     
     private var state = "total"
     
+    private var choiceId = 0
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tableviewReload()
         self.navigationController?.isNavigationBarHidden = true
@@ -33,12 +35,12 @@ class HomeViewController: UIViewController {
         makeNaviLeftButton()
         setUpAddNewPostButton()
         setUpTableView()
-        self.navigationController?.isNavigationBarHidden = true
     }
     
     private func setUpTableView(){
         let nib = UINib(nibName: PostTableViewCell.identifier, bundle: nil)
         myTableView.dataSource = self
+        myTableView.delegate = self
         myTableView.register(nib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
     
@@ -84,10 +86,13 @@ class HomeViewController: UIViewController {
         UIView.transition(with: myTableView,duration: 0.5,options: .transitionCrossDissolve,animations: { self.myTableView.reloadData() })
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination as? DetailViewController else { return }
+    }
     
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if state == "borrow"{
@@ -111,4 +116,15 @@ extension HomeViewController: UITableViewDataSource {
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailViewController()
+        vc.post
+        self.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+    }
+    
 }
