@@ -8,9 +8,8 @@
 import UIKit
 
 class EditProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var editedProfileImageView: UIImageView!
-    @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var newNickName: UITextField!
     
     let dataManager = DataManager.shared
@@ -21,7 +20,7 @@ class EditProfileViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
         
         setEditedImageView()
-        rightBarButton()
+        showRightBarButton()
     }
     
     private func setEditedImageView() {
@@ -31,22 +30,34 @@ class EditProfileViewController: UIViewController {
         editedProfileImageView.clipsToBounds = true
     }
     
-    private func rightBarButton() {
+    private func showRightBarButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(buttonPressed(_:)))
         self.navigationItem.rightBarButtonItem?.tintColor = .systemGreen
     }
     
     @objc private func buttonPressed(_ sender: Any) {
-        guard let newNickName = newNickName.text else { return }
-        dataManager.myNickName = newNickName
+        if let newNickName = newNickName.text, newNickName != "" {
+            dataManager.myNickName = newNickName
+        }
         navigationController?.popViewController(animated: true)
     }
 }
 
-extension EditProfileViewController: UIImagePickerControllerDelegate {
-    
-}
 
-extension EditProfileViewController: UINavigationControllerDelegate {
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBAction func didPressCameraButton(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.editedProfileImageView.image = image
+            dataManager.myProfileImage = image
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }

@@ -20,23 +20,22 @@ class MyInfoViewController: UIViewController {
     var filteredPostData: [PostData] = []
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
         nickNameLabel.text = dataManager.myNickName
+        imageView.image = dataManager.myProfileImage
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.isNavigationBarHidden = true
-        
         setImageView()
         setButtonLayer()
         setSegmentedControl()
         setTableView()
-        backBarButton()
+        touchUpBackButton()
     }
     
     private func setImageView() {
-        imageView.image = UIImage(named: "룬")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.clipsToBounds = true
@@ -53,7 +52,6 @@ class MyInfoViewController: UIViewController {
         let myLikeCount = dataManager.postData.filter { $0.likeList.contains(dataManager.myNickName) }.count
         segmentedControl.setTitle("나의 게시글 \(myPostCount)", forSegmentAt: 0)
         segmentedControl.setTitle("나의 좋아요 \(myLikeCount)", forSegmentAt: 1)
-        segmentedControl.backgroundColor = UIColor.systemGreen
     }
     
     private func setTableView() {
@@ -66,7 +64,7 @@ class MyInfoViewController: UIViewController {
         filteredPostData = dataManager.postData.filter { $0.nickName == dataManager.myNickName }
     }
     
-    private func backBarButton() {
+    private func touchUpBackButton() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = backBarButtonItem
         self.navigationItem.backBarButtonItem?.tintColor = .systemGreen
@@ -93,7 +91,11 @@ class MyInfoViewController: UIViewController {
 }
 
 extension MyInfoViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = DetailViewController()
+        navigationController?.pushViewController(detailViewController, animated: true)
+        detailViewController.postData = dataManager.postData[indexPath.row]
+    }
 }
 
 extension MyInfoViewController: UITableViewDataSource {
@@ -109,6 +111,7 @@ extension MyInfoViewController: UITableViewDataSource {
         
         return cell
     }
+
 }
 
 
