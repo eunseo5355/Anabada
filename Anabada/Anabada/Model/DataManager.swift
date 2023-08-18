@@ -20,6 +20,8 @@ class DataManager {
         PostData(id: "", title: "안경", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "영하")
     ]
     
+    var myNickName: String = "룬"
+    
     func addNewPost(newPost:PostData){
         postData.insert(newPost, at: 0)
     }

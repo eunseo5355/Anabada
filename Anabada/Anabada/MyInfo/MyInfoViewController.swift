@@ -19,17 +19,20 @@ class MyInfoViewController: UIViewController {
     
     var filteredPostData: [PostData] = []
     
-    let myNickName = "룬"
+    override func viewWillAppear(_ animated: Bool) {
+        nickNameLabel.text = dataManager.myNickName
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.isNavigationBarHidden = true
         
         setImageView()
         setButtonLayer()
         setSegmentedControl()
         setTableView()
-        
-        nickNameLabel.text = myNickName
+        backBarButton()
     }
     
     private func setImageView() {
@@ -46,10 +49,11 @@ class MyInfoViewController: UIViewController {
     }
     
     private func setSegmentedControl() {
-        let myPostCount = dataManager.postData.filter { $0.nickName == myNickName }.count
-        let myLikeCount = dataManager.postData.filter { $0.likeList.contains(myNickName) }.count
+        let myPostCount = dataManager.postData.filter { $0.nickName == dataManager.myNickName }.count
+        let myLikeCount = dataManager.postData.filter { $0.likeList.contains(dataManager.myNickName) }.count
         segmentedControl.setTitle("나의 게시글 \(myPostCount)", forSegmentAt: 0)
         segmentedControl.setTitle("나의 좋아요 \(myLikeCount)", forSegmentAt: 1)
+        segmentedControl.backgroundColor = UIColor.systemGreen
     }
     
     private func setTableView() {
@@ -59,7 +63,13 @@ class MyInfoViewController: UIViewController {
         let nib = UINib(nibName: PostTableViewCell.identifier, bundle: nil)
         myPostTableView.register(nib, forCellReuseIdentifier: PostTableViewCell.identifier)
         
-        filteredPostData = dataManager.postData.filter { $0.nickName == myNickName }
+        filteredPostData = dataManager.postData.filter { $0.nickName == dataManager.myNickName }
+    }
+    
+    private func backBarButton() {
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        self.navigationItem.backBarButtonItem?.tintColor = .systemGreen
     }
     
     @IBAction func editProfileButton(_ sender: Any) {
@@ -69,13 +79,17 @@ class MyInfoViewController: UIViewController {
     
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            filteredPostData = dataManager.postData.filter { $0.nickName == myNickName }
+            filteredPostData = dataManager.postData.filter { $0.nickName == dataManager.myNickName }
             myPostTableView.reloadData()
         } else if sender.selectedSegmentIndex == 1 {
-            filteredPostData = dataManager.postData.filter { $0.likeList.contains(myNickName) }
+            filteredPostData = dataManager.postData.filter { $0.likeList.contains(dataManager.myNickName) }
             myPostTableView.reloadData()
         }
     }
+    
+//    func changeNickName(_ newNickName: String) {
+//        nickNameLabel?.text = newNickName
+//    }
 }
 
 extension MyInfoViewController: UITableViewDelegate {

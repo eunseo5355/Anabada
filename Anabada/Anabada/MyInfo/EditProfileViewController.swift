@@ -11,12 +11,17 @@ class EditProfileViewController: UIViewController {
 
     @IBOutlet weak var editedProfileImageView: UIImageView!
     @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var newNickName: UITextField!
+    
+    let dataManager = DataManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.isNavigationBarHidden = false
+        
         setEditedImageView()
-        setCameraButtonLayer()
+        rightBarButton()
     }
     
     private func setEditedImageView() {
@@ -26,16 +31,16 @@ class EditProfileViewController: UIViewController {
         editedProfileImageView.clipsToBounds = true
     }
     
-    private func setCameraButtonLayer() {
-        //cameraButton.layer.cornerRadius = cameraButton.frame.height/2
+    private func rightBarButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(buttonPressed(_:)))
+        self.navigationItem.rightBarButtonItem?.tintColor = .systemGreen
     }
     
-//    lazy var rightButton: UIBarButtonItem = {
-//            let button = UIBarButtonItem(title: "RightBtn", style: .plain, target: self, action: #selector(buttonPressed(_:)))
-//            button.tag = 2
-//
-//            return button
-//        }()
+    @objc private func buttonPressed(_ sender: Any) {
+        guard let newNickName = newNickName.text else { return }
+        dataManager.myNickName = newNickName
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 extension EditProfileViewController: UIImagePickerControllerDelegate {
