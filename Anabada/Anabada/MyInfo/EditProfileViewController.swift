@@ -14,6 +14,9 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setEditedImageView()
+        setCameraButtonLayer()
     }
     
     private func setEditedImageView() {
@@ -24,7 +27,7 @@ class EditProfileViewController: UIViewController {
     }
     
     private func setCameraButtonLayer() {
-        cameraButton.layer.cornerRadius = cameraButton.frame.height/2
+        //cameraButton.layer.cornerRadius = cameraButton.frame.height/2
     }
     
 //    lazy var rightButton: UIBarButtonItem = {

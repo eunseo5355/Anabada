@@ -65,7 +65,6 @@ class MyInfoViewController: UIViewController {
     @IBAction func editProfileButton(_ sender: Any) {
         guard let editProfileViewController = UIStoryboard(name: "MyInfoViewController", bundle: .none).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
         navigationController?.pushViewController(editProfileViewController, animated: true)
-//        print("프로필 수정 버튼 클릭됨")
     }
     
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
