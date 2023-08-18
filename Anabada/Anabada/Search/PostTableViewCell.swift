@@ -19,6 +19,7 @@ class PostTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        postImageView.layer.cornerRadius = 10
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -49,6 +50,7 @@ class PostTableViewCell: UITableViewCell {
     
     
     func bind(_ postData: PostData) {
+        postImageView.image = postData.image
         titleLabel.text = postData.title
         timeLabel.text = calculateTimeAgo(from: postData.date)
         bigCategoryLabel.text = postData.bigCategory
