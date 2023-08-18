@@ -20,7 +20,8 @@ class HomeViewController: UIViewController {
     private var state = "total"
     
     override func viewWillAppear(_ animated: Bool) {
-        myTableView.reloadData()
+        self.tableviewReload()
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidLoad() {
@@ -29,10 +30,10 @@ class HomeViewController: UIViewController {
     }
     
     private func setUpUi() {
-        self.navigationController?.navigationBar.topItem?.title = ""
-        makeNaviLeftButton(state: "전체")
+        makeNaviLeftButton()
         setUpAddNewPostButton()
         setUpTableView()
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     private func setUpTableView(){
@@ -47,39 +48,41 @@ class HomeViewController: UIViewController {
         addNewPostButton.layer.cornerRadius = 20
     }
     
-    private func makeNaviLeftButton(state:String) {
+    private func makeNaviLeftButton() {
         
         let total = UIAction(title: "전체", handler: { _ in
             self.state = "total"
-            self.myTableView.reloadData()
-            self.makeNaviLeftButton(state: "전체")
+            self.tableviewReload()
+            self.menuButton.setTitle("전체", for: .normal)
         })
         
         let borrow = UIAction(title: "필요해요", handler: { _ in
             self.state = "borrow"
-            self.myTableView.reloadData()
-            self.makeNaviLeftButton(state: "필요해요")
+            self.tableviewReload()
+            self.menuButton.setTitle("필요해요", for: .normal)
         })
         
         let lend = UIAction(title: "빌려드려요", handler: { _ in
             self.state = "lend"
-            self.myTableView.reloadData()
-            self.makeNaviLeftButton(state: "빌려드려요")
+            self.tableviewReload()
+            self.menuButton.setTitle("빌려드려요", for: .normal)
         })
         
         let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in })
         let menu = UIMenu(identifier: nil, options: .displayInline, children: [total, borrow, lend, cancel])
         
-        menuButton.setTitle(state, for: .normal)
-        var newSize = menuButton.intrinsicContentSize
-        newSize.width += 10
-        menuButton.frame.size = newSize
+        menuButton.setTitle("전체", for: .normal)
         menuButton.menu = menu
-        menuButton.showsMenuAsPrimaryAction = true
     }
+    
     
     @objc func addButtonTapped(sender: UIButton) {
         performSegue(withIdentifier: "AddPostViewController", sender: nil)
+    }
+    
+    func tableviewReload(){
+        UIView.transition(with: myTableView,duration: 0.5,options: .transitionCrossDissolve,animations: { self.myTableView.reloadData() })
+        
     }
     
 }

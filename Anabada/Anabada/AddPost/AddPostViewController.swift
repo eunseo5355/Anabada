@@ -23,7 +23,7 @@ class AddPostViewController: UIViewController {
     
     var nowTextView = 0
     
-    var choiceImage = UIImage(systemName: "photo")
+    var choiceImage:UIImage?
     
     @IBOutlet var titleTrailingView: UIView!
     
@@ -52,29 +52,17 @@ class AddPostViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func keyboardUp(notification:NSNotification) {
-        if nowTextView == 0{
-            
-        } else {
-            if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-
-                let keyboardRectangle = keyboardFrame.cgRectValue
-
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height + 100)
-                })
-            }
-        }
-    }
-    
-    @objc func keyboardDown() {
-        self.view.transform = .identity
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUi()
+        self.navigationController?.isNavigationBarHidden = false
+        let tapImageViewRecognizer = UITapGestureRecognizer(target: self, action: #selector(addImageButtonTapped(sender:)))
+                   //이미지뷰가 상호작용할 수 있게 설정
+        image.isUserInteractionEnabled = true
+                   //이미지뷰에 제스처인식기 연결
+        image.addGestureRecognizer(tapImageViewRecognizer)
     }
+    
     
     private func setUpUi(){
         picker.delegate = self
@@ -131,7 +119,11 @@ class AddPostViewController: UIViewController {
         }
     }
     
-    @objc func addImageButtonTapped(sender:UIButton){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+         self.view.endEditing(true)
+    }
+    
+    @objc func addImageButtonTapped(sender:Any?){
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
         
@@ -148,7 +140,7 @@ class AddPostViewController: UIViewController {
     }
     
     @objc func doneButtonTapped(sender:UIButton){
-        if doneButtonToggle{
+        if doneButtonToggle && choiceImage != nil{
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let dateString = formatter.string(from: Date())
@@ -157,32 +149,44 @@ class AddPostViewController: UIViewController {
             navigationController?.popViewController(animated: true)
         } else {
             
-            if titleTextView.text! == "" && contentTextView.text! == ""{
-                UIView.animate(withDuration: 0.5){
-                    self.titleTrailingView.layer.borderColor = UIColor.red.cgColor
-                    self.contentTrailingView.layer.borderColor = UIColor.red.cgColor
-                }
+            if titleTextView.text! == ""{
+                UIView.animate(withDuration: 0.5){ self.titleTrailingView.layer.borderColor = UIColor.red.cgColor }
                 self.titleTrailingView.shake()
+            }
+            
+            if contentTextView.text! == ""{
+                UIView.animate(withDuration: 0.5){ self.contentTrailingView.layer.borderColor = UIColor.red.cgColor }
                 self.contentTrailingView.shake()
-            } else if titleTextView.text! == ""{
-                UIView.animate(withDuration: 0.5){
-                    self.titleTrailingView.layer.borderColor = UIColor.red.cgColor
-                }
-                self.titleTrailingView.shake()
-            } else if contentTextView.text! == ""{
-                UIView.animate(withDuration: 0.5){
-                    self.contentTrailingView.layer.borderColor = UIColor.red.cgColor
-                }
-                self.contentTrailingView.shake()
+            }
+            
+            if choiceImage == nil{
+                UIView.animate(withDuration: 0.5){ self.imageAddButton.layer.borderColor = UIColor.red.cgColor }
+                self.imageAddButton.shake()
             }
             
         }
         self.view.endEditing(true)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-         self.view.endEditing(true)
-   }
+    @objc func keyboardUp(notification:NSNotification) {
+        if nowTextView == 0{
+            
+        } else {
+            if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+
+                let keyboardRectangle = keyboardFrame.cgRectValue
+
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.view.transform = CGAffineTransform(translationX: 0, y: -keyboardRectangle.height + 100)
+                })
+            }
+        }
+    }
+    
+    @objc func keyboardDown() {
+        self.view.transform = .identity
+    }
+
     
 }
 
@@ -234,6 +238,8 @@ extension AddPostViewController: UINavigationControllerDelegate, UIImagePickerCo
             let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
             self.choiceImage = img
             self.image.image = img
+            self.image.contentMode = .scaleAspectFit
+            UIView.animate(withDuration: 1){ self.imageAddButton.layer.borderColor = UIColor.systemGreen.cgColor }
         }
         
     }
