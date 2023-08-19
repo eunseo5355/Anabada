@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct PostData {
-    var id: String
+    var id: Int
     var title: String
     var image: UIImage?
     var date: String
@@ -26,4 +26,10 @@ struct Comment {
     var nickName: String
     var content: String
     var date: String
+}
+
+
+struct UserInfo{
+    var nickName: String
+    var profileImage: UIImage?
 }

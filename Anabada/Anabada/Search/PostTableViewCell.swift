@@ -56,5 +56,5 @@ class PostTableViewCell: UITableViewCell {
         bigCategoryLabel.text = postData.bigCategory
         commentCountLabel.text = "\(postData.comments.count)"
     }
-    
+
 }

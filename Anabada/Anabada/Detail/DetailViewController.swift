@@ -8,39 +8,46 @@
 import UIKit
 
 
-
 class DetailViewController: UIViewController {
-    
     
     var postData: PostData?
     
-    var image1: String?
+    var dataManager = DataManager.shared
     
-    @IBOutlet weak var ImageView: UIScrollView!
+    @IBOutlet var postImage: UIImageView!
+    
+    @IBOutlet var profileImage: UIImageView!
+    
+    @IBOutlet var nickNameLabel: UILabel!
+    
+    @IBOutlet var titleLabel: UILabel!
+    
+    @IBOutlet var contentTextView: UITextView!
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        ImageView.UIImage = image1
-//       let image1 = UIImage(named: "catImage1")
+        setUpUi()
     }
     
-    
-    @IBOutlet weak var BackButton: UINavigationBar!
-    
-    @IBOutlet weak var UserProfileLabel: UILabel!
-    
-    @IBOutlet weak var StatusButton: UIButton!
-    
-    @IBOutlet weak var HeartButton: UIButton!
-    
-    @IBOutlet weak var CommentLabel: UIButton!
-    
-   
+    func setUpUi(){
         
-
-
-        
+        var target = postData?.nickName
+        self.profileImage?.image = dataManager.userData.filter{$0.nickName == target}[0].profileImage
+        self.postImage.image = postData?.image
+        self.nickNameLabel.text = postData?.nickName
+        self.titleLabel.text = postData?.title
+        self.contentTextView.text = postData?.content
+        self.navigationController?.navigationBar.tintColor = UIColor.systemGreen
+    }
     
-
-
+    func bind(_ postData: PostData) {
+        self.postData = postData
+    }
+    
 }

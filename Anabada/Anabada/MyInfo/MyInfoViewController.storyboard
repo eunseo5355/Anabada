@@ -17,20 +17,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eyC-1v-fBi">
-                                <rect key="frame" x="20" y="118" width="100" height="100"/>
+                                <rect key="frame" x="20" y="162" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="957-nk-VVZ"/>
                                     <constraint firstAttribute="height" constant="100" id="gxc-bs-OjX"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMg-21-QmL">
-                                <rect key="frame" x="130" y="139" width="77.666666666666686" height="19.333333333333343"/>
+                                <rect key="frame" x="130" y="183" width="77.666666666666686" height="19.333333333333343"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8X-sb-Ysx">
-                                <rect key="frame" x="20" y="238" width="353" height="45"/>
+                                <rect key="frame" x="20" y="282" width="353" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Y0y-80-DPi"/>
                                 </constraints>
@@ -44,13 +44,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edt-eK-fx0">
-                                <rect key="frame" x="20" y="64" width="87" height="24"/>
+                                <rect key="frame" x="20" y="108" width="87" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="921-Nb-DvQ">
-                                <rect key="frame" x="0.0" y="303" width="393" height="32"/>
+                                <rect key="frame" x="0.0" y="347" width="393" height="32"/>
                                 <segments>
                                     <segment title="나의 게시글"/>
                                     <segment title="나의 좋아요"/>
@@ -61,7 +61,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XD2-XR-b3j">
-                                <rect key="frame" x="0.0" y="344" width="393" height="474"/>
+                                <rect key="frame" x="0.0" y="388" width="393" height="381"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -87,7 +87,11 @@
                             <constraint firstItem="eyC-1v-fBi" firstAttribute="top" secondItem="edt-eK-fx0" secondAttribute="bottom" constant="30" id="tRw-2a-rFo"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="oHm-7S-1Fx"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="S50-6b-RfK"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="editProfileBtn" destination="y8X-sb-Ysx" id="7Xi-sq-WDn"/>
                         <outlet property="imageView" destination="eyC-1v-fBi" id="Dzg-ob-u9O"/>
@@ -111,33 +115,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLO-FE-pbP">
-                                <rect key="frame" x="20.000000000000004" y="160" width="44.333333333333343" height="20.333333333333343"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="20" y="263" width="39" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BJK-Df-4Ur">
-                                <rect key="frame" x="20" y="190.33333333333334" width="353" height="34"/>
+                                <rect key="frame" x="20" y="291" width="353" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="oTw-df-ayx"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QDY-Sp-zY3">
-                                <rect key="frame" x="136.66666666666666" y="20" width="119.99999999999997" height="120"/>
+                                <rect key="frame" x="136.66666666666666" y="123" width="119.99999999999997" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="xrs-oH-X82"/>
                                     <constraint firstAttribute="height" constant="120" id="yRv-AB-QQ2"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pD9-qY-FpU">
-                                <rect key="frame" x="226.66666666666666" y="90" width="39.999999999999972" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pD9-qY-FpU">
+                                <rect key="frame" x="226.66666666666666" y="193" width="39.999999999999972" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="89Z-eg-xPt"/>
                                     <constraint firstAttribute="width" constant="40" id="CxB-cw-4bk"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="opaqueSeparatorColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" image="camera.fill" catalog="system"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="camera.fill" catalog="system">
+                                    <backgroundConfiguration key="background" cornerRadius="18">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="strokeColor" systemColor="systemGray4Color"/>
+                                    </backgroundConfiguration>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didPressCameraButton:" destination="dQh-0K-xOM" eventType="touchUpInside" id="DxV-xy-hvx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bd6-RJ-hcb"/>
@@ -156,6 +170,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="프로필 수정" id="VMe-rM-WAo"/>
+                    <connections>
+                        <outlet property="editedProfileImageView" destination="QDY-Sp-zY3" id="x5k-83-TW7"/>
+                        <outlet property="newNickName" destination="BJK-Df-4Ur" id="zyB-gb-Aj3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2D-cc-3u3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -164,6 +182,7 @@
     </scenes>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="93"/>
+        <image name="person" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -172,6 +191,12 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

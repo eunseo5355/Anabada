@@ -9,6 +9,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    // MARK: - 프로퍼티
+    
     @IBOutlet var myTableView: UITableView!
     
     @IBOutlet var addNewPostButton: UIButton!
@@ -19,25 +21,36 @@ class HomeViewController: UIViewController {
     
     private var state = "total"
     
+    private var filterData:[PostData] = []
+    
+    // MARK: - viewController LifeCycle
+    
     override func viewWillAppear(_ animated: Bool) {
-        myTableView.reloadData()
+        self.navigationController?.isNavigationBarHidden = true
+        self.filterData = dataManager.postData
+        self.tableviewReload()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUi()
+
     }
     
+    // MARK: - SetUp Ui
+
+    
     private func setUpUi() {
-        self.navigationController?.navigationBar.topItem?.title = ""
-        makeNaviLeftButton(state: "전체")
+        makeNaviLeftButton()
         setUpAddNewPostButton()
         setUpTableView()
+
     }
     
     private func setUpTableView(){
         let nib = UINib(nibName: PostTableViewCell.identifier, bundle: nil)
         myTableView.dataSource = self
+        myTableView.delegate = self
         myTableView.register(nib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
     
@@ -47,65 +60,77 @@ class HomeViewController: UIViewController {
         addNewPostButton.layer.cornerRadius = 20
     }
     
-    private func makeNaviLeftButton(state:String) {
+    func tableviewReload(){
+        UIView.transition(with: myTableView,duration: 0.5,options: .transitionCrossDissolve,animations: { self.myTableView.reloadData() })
+    }
+    
+
+    // MARK: - button tap 메서드
+    
+    private func makeNaviLeftButton() {
         
         let total = UIAction(title: "전체", handler: { _ in
             self.state = "total"
-            self.myTableView.reloadData()
-            self.makeNaviLeftButton(state: "전체")
+            self.filterData = self.dataManager.postData
+            self.menuButton.setTitle("전체", for: .normal)
+            self.tableviewReload()
         })
         
         let borrow = UIAction(title: "필요해요", handler: { _ in
             self.state = "borrow"
-            self.myTableView.reloadData()
-            self.makeNaviLeftButton(state: "필요해요")
+            self.filterData = self.dataManager.postData.filter{$0.bigCategory == "필요해요"}
+            self.menuButton.setTitle("필요해요", for: .normal)
+            self.tableviewReload()
         })
         
         let lend = UIAction(title: "빌려드려요", handler: { _ in
             self.state = "lend"
-            self.myTableView.reloadData()
-            self.makeNaviLeftButton(state: "빌려드려요")
+            self.filterData = self.dataManager.postData.filter{$0.bigCategory == "빌려드려요"}
+            self.menuButton.setTitle("빌려드려요", for: .normal)
+            self.tableviewReload()
         })
         
         let cancel = UIAction(title: "취소", attributes: .destructive, handler: { _ in })
         let menu = UIMenu(identifier: nil, options: .displayInline, children: [total, borrow, lend, cancel])
         
-        menuButton.setTitle(state, for: .normal)
-        var newSize = menuButton.intrinsicContentSize
-        newSize.width += 10
-        menuButton.frame.size = newSize
+        menuButton.setTitle("전체", for: .normal)
         menuButton.menu = menu
-        menuButton.showsMenuAsPrimaryAction = true
     }
+    
     
     @objc func addButtonTapped(sender: UIButton) {
         performSegue(withIdentifier: "AddPostViewController", sender: nil)
     }
     
+
+    
+    
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if state == "borrow"{
-            return dataManager.postData.filter{$0.bigCategory == "필요해요"}.count
-        } else if state == "lend"{
-            return dataManager.postData.filter{$0.bigCategory == "빌려드려요"}.count
-        } else {
-            return dataManager.postData.count
-        }
+      
+        return filterData.count
 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = myTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as? PostTableViewCell else { return UITableViewCell() }
-        if state == "borrow"{
-            cell.bind(dataManager.postData.filter{$0.bigCategory == "필요해요"}[indexPath.row])
-        } else if state == "lend"{
-            cell.bind(dataManager.postData.filter{$0.bigCategory == "빌려드려요"}[indexPath.row])
-        } else {
-            cell.bind(dataManager.postData[indexPath.row])
-        }
+        cell.bind(filterData[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let nextVC = self.storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else { return }
+        nextVC.bind(filterData[indexPath.row])
+        print(dataManager.myInfo.profileImage)
+//        nextVC.profileImage?.image = dataManager.myInfo.profileImage
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
 }

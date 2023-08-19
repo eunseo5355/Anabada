@@ -19,7 +19,10 @@ class MyInfoViewController: UIViewController {
     
     var filteredPostData: [PostData] = []
     
-    let myNickName = "룬"
+    override func viewWillAppear(_ animated: Bool) {
+        configureViewWillAppear()
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +31,18 @@ class MyInfoViewController: UIViewController {
         setButtonLayer()
         setSegmentedControl()
         setTableView()
-        
-        nickNameLabel.text = myNickName
+        touchUpBackButton()
+    }
+    
+    // MARK: - Helpers
+    
+    private func configureViewWillAppear() {
+        self.navigationController?.isNavigationBarHidden = true
+        nickNameLabel.text = dataManager.myInfo.nickName
+        imageView.image = dataManager.myInfo.profileImage
     }
     
     private func setImageView() {
-        imageView.image = UIImage(named: "룬")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.clipsToBounds = true
@@ -46,8 +55,8 @@ class MyInfoViewController: UIViewController {
     }
     
     private func setSegmentedControl() {
-        let myPostCount = dataManager.postData.filter { $0.nickName == myNickName }.count
-        let myLikeCount = dataManager.postData.filter { $0.likeList.contains(myNickName) }.count
+        let myPostCount = dataManager.postData.filter { $0.nickName == dataManager.myInfo.nickName }.count
+        let myLikeCount = dataManager.postData.filter { $0.likeList.contains(dataManager.myInfo.nickName) }.count
         segmentedControl.setTitle("나의 게시글 \(myPostCount)", forSegmentAt: 0)
         segmentedControl.setTitle("나의 좋아요 \(myLikeCount)", forSegmentAt: 1)
     }
@@ -59,28 +68,42 @@ class MyInfoViewController: UIViewController {
         let nib = UINib(nibName: PostTableViewCell.identifier, bundle: nil)
         myPostTableView.register(nib, forCellReuseIdentifier: PostTableViewCell.identifier)
         
-        filteredPostData = dataManager.postData.filter { $0.nickName == myNickName }
+        filteredPostData = dataManager.postData.filter { $0.nickName == dataManager.myInfo.nickName }
+    }
+    
+    private func touchUpBackButton() {
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        self.navigationItem.backBarButtonItem?.tintColor = .systemGreen
     }
     
     @IBAction func editProfileButton(_ sender: Any) {
         guard let editProfileViewController = UIStoryboard(name: "MyInfoViewController", bundle: .none).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
+        editProfileViewController.changeNickNameCallBack = { [weak self] in
+            guard let self else { return }
+            nickNameLabel.text = dataManager.myInfo.nickName
+        }   // editProfileViewController에 있는 changeNickNameCallBack아 어떤 식으로 저장하는진 모르겠지만 이렇게 실행해줘! 하고 정해주고 넘김
         navigationController?.pushViewController(editProfileViewController, animated: true)
-//        print("프로필 수정 버튼 클릭됨")
     }
     
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            filteredPostData = dataManager.postData.filter { $0.nickName == myNickName }
+            filteredPostData = dataManager.postData.filter { $0.nickName == dataManager.myInfo.nickName }
             myPostTableView.reloadData()
         } else if sender.selectedSegmentIndex == 1 {
-            filteredPostData = dataManager.postData.filter { $0.likeList.contains(myNickName) }
+            filteredPostData = dataManager.postData.filter { $0.likeList.contains(dataManager.myInfo.nickName) }
             myPostTableView.reloadData()
         }
     }
+
 }
 
 extension MyInfoViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let detailViewController = UIStoryboard(name: "DetailStoryboard", bundle: .none).instantiateViewController(identifier: "DetailViewController") as? DetailViewController else { return }
+        detailViewController.bind(filteredPostData[indexPath.row])
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 extension MyInfoViewController: UITableViewDataSource {
@@ -96,6 +119,7 @@ extension MyInfoViewController: UITableViewDataSource {
         
         return cell
     }
+    
 }
 
 
