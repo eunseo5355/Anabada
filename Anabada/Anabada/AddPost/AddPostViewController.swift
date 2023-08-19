@@ -149,7 +149,7 @@ class AddPostViewController: UIViewController {
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let dateString = formatter.string(from: Date())
             let data = PostData(
-                id: "", title: titleTextView.text,
+                id: 0, title: titleTextView.text,
                 image: choiceImage, date: dateString,
                 likeList: [],comments: [],
                 bigCategory: buttonToggle ? "필요해요" : "빌려드려요",

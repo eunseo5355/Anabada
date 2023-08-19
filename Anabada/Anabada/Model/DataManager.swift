@@ -14,13 +14,14 @@ class DataManager {
     static let shared = DataManager()
     
     lazy var postData: [PostData] = [
-        PostData(id: "", title: "책", image: UIImage(systemName: "folder"), date: "", likeList: ["룬"], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "은서"),
-        PostData(id: "", title: "연필", image: UIImage(systemName: "folder"), date: "", likeList: ["룬"], comments: [], bigCategory: "빌려드려요", smallCategory: "", content: "", nickName: "준영"),
-        PostData(id: "", title: "거울", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "룬"),
-        PostData(id: "", title: "안경", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "영하")
+        
+        PostData(id: 0, title: "책", image: UIImage(systemName: "folder"), date: "", likeList: ["룬"], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "은서"),
+        PostData(id: 1, title: "연필", image: UIImage(systemName: "folder"), date: "", likeList: ["룬"], comments: [], bigCategory: "빌려드려요", smallCategory: "", content: "", nickName: "준영"),
+        PostData(id: 2, title: "이랑", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "이랑"),
+        PostData(id: 3, title: "안경", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "영하")
     ]
     
-    var myInfo: UserInfo = UserInfo(nickName: "룬", profileImage: UIImage(named: "룬"))
+    var myInfo: UserInfo = UserInfo(nickName: "이랑", profileImage: UIImage(named: "룬"))
     
     var userData: [UserInfo] = [
         UserInfo(nickName: "은서", profileImage: UIImage(systemName: "person.fill")),
@@ -31,7 +32,8 @@ class DataManager {
 
 
     func addNewPost(newPost:PostData){
-        postData.insert(newPost, at: 0) 
+        for i in 0...postData.count - 1{ postData[i].id += 1 }
+        postData.insert(newPost, at: 0)
     }
     
     func addNewComment(postIndex: Int, newComment: Comment){
@@ -47,6 +49,11 @@ class DataManager {
     }
     
     func changeNickName(_ newNickName: String) {
+    
+
+        let changeIndex = postData.filter{$0.nickName == myInfo.nickName}.map{$0.id}
+
+        for i in changeIndex{ postData[i].nickName = newNickName }
         myInfo.nickName = newNickName
         let users = userData.map{$0.nickName}
         guard let choiceIndex = users.firstIndex(of: myInfo.nickName) else { return }

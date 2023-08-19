@@ -27,10 +27,8 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
-        self.filterData = self.dataManager.postData
+        self.filterData = dataManager.postData
         self.tableviewReload()
-        print(dataManager.myInfo.nickName)
-        print(dataManager.postData.first)
     }
     
     override func viewDidLoad() {
@@ -130,6 +128,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let nextVC = self.storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else { return }
         nextVC.bind(filterData[indexPath.row])
+        print(dataManager.myInfo.profileImage)
+//        nextVC.profileImage?.image = dataManager.myInfo.profileImage
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct PostData {
-    var id: String
+    var id: Int
     var title: String
     var image: UIImage?
     var date: String

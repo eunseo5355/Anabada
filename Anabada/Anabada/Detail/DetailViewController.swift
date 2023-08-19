@@ -24,6 +24,8 @@ class DetailViewController: UIViewController {
     
     @IBOutlet var contentTextView: UITextView!
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
     }
@@ -35,13 +37,8 @@ class DetailViewController: UIViewController {
     
     func setUpUi(){
         
-        var profileData = dataManager.userData.filter{$0.nickName == postData?.nickName}
-        
-        if profileData.count == 1{
-            self.profileImage.image = profileData[0].profileImage
-        } else {
-            self.profileImage.image = UIImage(systemName: "person")
-        }
+        var target = postData?.nickName
+        self.profileImage?.image = dataManager.userData.filter{$0.nickName == target}[0].profileImage
         self.postImage.image = postData?.image
         self.nickNameLabel.text = postData?.nickName
         self.titleLabel.text = postData?.title
