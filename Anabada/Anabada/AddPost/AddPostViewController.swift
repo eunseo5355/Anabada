@@ -9,7 +9,7 @@ import UIKit
 
 class AddPostViewController: UIViewController {
     
-    
+    // MARK: - 프로퍼티
     
     @IBOutlet var borrow: UIButton!
     
@@ -41,6 +41,7 @@ class AddPostViewController: UIViewController {
     
     private let picker = UIImagePickerController()
     
+    // MARK: - ViewController Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardUp), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -63,6 +64,7 @@ class AddPostViewController: UIViewController {
         image.addGestureRecognizer(tapImageViewRecognizer)
     }
     
+    // MARK: -메서드
     
     private func setUpUi(){
         picker.delegate = self
@@ -123,6 +125,8 @@ class AddPostViewController: UIViewController {
          self.view.endEditing(true)
     }
     
+    // MARK: - button tap 메서드
+    
     @objc func addImageButtonTapped(sender:Any?){
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
@@ -144,7 +148,14 @@ class AddPostViewController: UIViewController {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let dateString = formatter.string(from: Date())
-            let data = PostData(id: "", title: titleTextView.text, image: choiceImage, date: dateString, likeList: [],comments: [], bigCategory: buttonToggle ? "필요해요" : "빌려드려요", smallCategory: "", content: contentTextView.text, nickName: "")
+            let data = PostData(
+                id: "", title: titleTextView.text,
+                image: choiceImage, date: dateString,
+                likeList: [],comments: [],
+                bigCategory: buttonToggle ? "필요해요" : "빌려드려요",
+                smallCategory: "", content: contentTextView.text,
+                nickName: dataManager.myInfo.nickName
+            )
             dataManager.addNewPost(newPost: data)
             navigationController?.popViewController(animated: true)
         } else {

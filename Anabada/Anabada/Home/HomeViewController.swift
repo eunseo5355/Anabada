@@ -9,6 +9,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    // MARK: - 프로퍼티
+    
     @IBOutlet var myTableView: UITableView!
     
     @IBOutlet var addNewPostButton: UIButton!
@@ -21,6 +23,8 @@ class HomeViewController: UIViewController {
     
     private var filterData:[PostData] = []
     
+    // MARK: - viewController LifeCycle
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         self.filterData = self.dataManager.postData
@@ -32,10 +36,14 @@ class HomeViewController: UIViewController {
         setUpUi()
     }
     
+    // MARK: - SetUp Ui
+
+    
     private func setUpUi() {
         makeNaviLeftButton()
         setUpAddNewPostButton()
         setUpTableView()
+
     }
     
     private func setUpTableView(){
@@ -50,6 +58,13 @@ class HomeViewController: UIViewController {
         addNewPostButton.addTarget(self, action: #selector(addButtonTapped(sender:)), for: .touchUpInside)
         addNewPostButton.layer.cornerRadius = 20
     }
+    
+    func tableviewReload(){
+        UIView.transition(with: myTableView,duration: 0.5,options: .transitionCrossDissolve,animations: { self.myTableView.reloadData() })
+    }
+    
+
+    // MARK: - button tap 메서드
     
     private func makeNaviLeftButton() {
         
@@ -86,14 +101,8 @@ class HomeViewController: UIViewController {
         performSegue(withIdentifier: "AddPostViewController", sender: nil)
     }
     
-    func tableviewReload(){
-        UIView.transition(with: myTableView,duration: 0.5,options: .transitionCrossDissolve,animations: { self.myTableView.reloadData() })
-    }
+
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? DetailViewController else { return }
-       
-    }
     
 }
 

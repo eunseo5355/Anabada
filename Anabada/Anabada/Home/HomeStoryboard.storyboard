@@ -157,10 +157,10 @@
         <!--DetailViewController-->
         <scene sceneID="1ie-aO-t9W">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DEQ-Xd-tkS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardIdentifier="DetailViewController" storyboardName="DetailStoryboard" referencedIdentifier="DetailViewController" id="Dnw-la-p8O" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="obZ-zO-ZYg"/>
                 </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DEQ-Xd-tkS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="527" y="1890"/>
         </scene>
