@@ -29,11 +29,14 @@ class HomeViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         self.filterData = self.dataManager.postData
         self.tableviewReload()
+        print(dataManager.myInfo.nickName)
+        print(dataManager.postData.first)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUi()
+
     }
     
     // MARK: - SetUp Ui

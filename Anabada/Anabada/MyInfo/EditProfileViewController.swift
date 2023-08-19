@@ -14,6 +14,8 @@ class EditProfileViewController: UIViewController {
     
     let dataManager = DataManager.shared
     
+    var changeNickNameCallBack: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +39,8 @@ class EditProfileViewController: UIViewController {
     
     @objc private func buttonPressed(_ sender: Any) {
         if let newNickName = newNickName.text, newNickName != "" {
-            dataManager.myInfo.nickName = newNickName
+            dataManager.changeNickName(newNickName)
+            changeNickNameCallBack?()   // 뭔진 모르겠지만 실행해조
         }
         navigationController?.popViewController(animated: true)
     }

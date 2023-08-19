@@ -13,7 +13,7 @@ class DataManager {
     
     static let shared = DataManager()
     
-    var postData: [PostData] = [
+    lazy var postData: [PostData] = [
         PostData(id: "", title: "책", image: UIImage(systemName: "folder"), date: "", likeList: ["룬"], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "은서"),
         PostData(id: "", title: "연필", image: UIImage(systemName: "folder"), date: "", likeList: ["룬"], comments: [], bigCategory: "빌려드려요", smallCategory: "", content: "", nickName: "준영"),
         PostData(id: "", title: "거울", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "룬"),
@@ -44,6 +44,13 @@ class DataManager {
     
     func removeComment(postIndex: Int, commentIndex: Int){
         postData[postIndex].comments.remove(at: commentIndex)
+    }
+    
+    func changeNickName(_ newNickName: String) {
+        myInfo.nickName = newNickName
+        let users = userData.map{$0.nickName}
+        guard let choiceIndex = users.firstIndex(of: myInfo.nickName) else { return }
+        userData[choiceIndex].nickName = newNickName
     }
 
     private init() { }
