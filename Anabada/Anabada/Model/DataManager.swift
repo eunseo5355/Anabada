@@ -45,6 +45,10 @@ class DataManager {
     func removeComment(postIndex: Int, commentIndex: Int){
         postData[postIndex].comments.remove(at: commentIndex)
     }
+    
+    func changeNickName(_ newNickName: String) {
+        myInfo.nickName = newNickName
+    }
 
     private init() { }
 }

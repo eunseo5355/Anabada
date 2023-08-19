@@ -20,9 +20,7 @@ class MyInfoViewController: UIViewController {
     var filteredPostData: [PostData] = []
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
-        nickNameLabel.text = dataManager.myInfo.nickName
-        imageView.image = dataManager.myInfo.profileImage
+        configureViewWillAppear()
     }
     
     override func viewDidLoad() {
@@ -33,6 +31,14 @@ class MyInfoViewController: UIViewController {
         setSegmentedControl()
         setTableView()
         touchUpBackButton()
+    }
+    
+    // MARK: - Helpers
+    
+    private func configureViewWillAppear() {
+        self.navigationController?.isNavigationBarHidden = true
+        nickNameLabel.text = dataManager.myInfo.nickName
+        imageView.image = dataManager.myInfo.profileImage
     }
     
     private func setImageView() {
@@ -72,6 +78,10 @@ class MyInfoViewController: UIViewController {
     
     @IBAction func editProfileButton(_ sender: Any) {
         guard let editProfileViewController = UIStoryboard(name: "MyInfoViewController", bundle: .none).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
+        editProfileViewController.changeNickNameCallBack = { [weak self] in
+            guard let self else { return }
+            nickNameLabel.text = dataManager.myInfo.nickName
+        }   // editProfileViewController에 있는 changeNickNameCallBack아 어떤 식으로 저장하는진 모르겠지만 이렇게 실행해줘! 하고 정해주고 넘김
         navigationController?.pushViewController(editProfileViewController, animated: true)
     }
     
@@ -84,19 +94,15 @@ class MyInfoViewController: UIViewController {
             myPostTableView.reloadData()
         }
     }
-    
-//    func changeNickName(_ newNickName: String) {
-//        nickNameLabel?.text = newNickName
-//    }
+
 }
 
 extension MyInfoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailViewController = DetailViewController()
-        navigationController?.pushViewController(detailViewController, animated: true)
-        detailViewController.postData = dataManager.postData[indexPath.row]
+        guard let detailViewController = UIStoryboard(name: "DetailStoryboard", bundle: .none).instantiateViewController(identifier: "DetailViewController") as? DetailViewController else { return }
+        detailViewController.bind(filteredPostData[indexPath.row])
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
-    
 }
 
 extension MyInfoViewController: UITableViewDataSource {
