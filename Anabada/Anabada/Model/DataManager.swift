@@ -49,8 +49,6 @@ class DataManager {
     }
     
     func changeNickName(_ newNickName: String) {
-    
-
         let changeIndex = postData.filter{$0.nickName == myInfo.nickName}.map{$0.id}
 
         for i in changeIndex{ postData[i].nickName = newNickName }
@@ -58,6 +56,16 @@ class DataManager {
         let users = userData.map{$0.nickName}
         guard let choiceIndex = users.firstIndex(of: myInfo.nickName) else { return }
         userData[choiceIndex].nickName = newNickName
+    }
+    
+    func changeProfileImage(_ newImage: UIImage) {
+        let changeIndex = postData.filter{$0.nickName == myInfo.nickName}.map{$0.id}
+
+        for i in changeIndex{ userData[i].nickName = myInfo.nickName }
+        myInfo.profileImage = newImage
+        let users = userData.map{$0.nickName}
+        guard let choiceIndex = users.firstIndex(of: myInfo.nickName) else { return }
+        userData[choiceIndex].profileImage = newImage
     }
 
     private init() { }

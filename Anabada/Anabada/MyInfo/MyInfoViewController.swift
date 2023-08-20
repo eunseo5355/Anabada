@@ -83,6 +83,10 @@ class MyInfoViewController: UIViewController {
             guard let self else { return }
             nickNameLabel.text = dataManager.myInfo.nickName
         }   // editProfileViewController에 있는 changeNickNameCallBack아 어떤 식으로 저장하는진 모르겠지만 이렇게 실행해줘! 하고 정해주고 넘김
+        editProfileViewController.changeProfileImageCallBack = { [weak self] in
+            guard let self else { return }
+            imageView.image = dataManager.myInfo.profileImage
+        }
         navigationController?.pushViewController(editProfileViewController, animated: true)
     }
     
