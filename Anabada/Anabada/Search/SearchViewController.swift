@@ -23,6 +23,14 @@ class SearchViewController: UIViewController {
     
     //MARK: - Life Cycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -33,7 +41,6 @@ class SearchViewController: UIViewController {
     // MARK: - Custom Method
     
     private func setUI() {
-        navigationController?.isNavigationBarHidden = true
         filteredPostData = dataManager.postData
     }
     
