@@ -10,7 +10,7 @@ import UIKit
 class SearchViewController: UIViewController {
     
     //MARK: - @IBOutlet
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var postTableView: UITableView!
     
@@ -25,12 +25,17 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
+        setUI()
         setTableView()
         setSearchBar()
     }
     
     // MARK: - Custom Method
+    
+    private func setUI() {
+        navigationController?.isNavigationBarHidden = true
+        filteredPostData = dataManager.postData
+    }
     
     private func setTableView() {
         postTableView.delegate = self
@@ -58,6 +63,8 @@ extension SearchViewController: UITableViewDataSource {
         guard let cell = postTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as? PostTableViewCell
         else { return UITableViewCell() }
         
+        cell.selectionStyle = .none
+        
         if didFilter {
             cell.bind(filteredPostData[indexPath.row])
         } else {
@@ -76,7 +83,11 @@ extension SearchViewController: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 
 extension SearchViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let detailViewController = self.storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else { return }
+        detailViewController.postData = filteredPostData[indexPath.row]
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 //MARK: - UISearchBarDelegate
