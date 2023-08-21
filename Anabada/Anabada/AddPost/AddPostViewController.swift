@@ -66,6 +66,7 @@ class AddPostViewController: UIViewController {
     
     // MARK: -메서드
     
+    //SetUpUi
     private func setUpUi(){
         picker.delegate = self
         titleTextView.delegate = self
@@ -76,6 +77,7 @@ class AddPostViewController: UIViewController {
         setUpTrailingView()
     }
     
+    //SetUpButton
     private func setUpButton(state:Bool){
         
         borrow.layer.borderWidth = 1
@@ -103,6 +105,7 @@ class AddPostViewController: UIViewController {
         
     }
     
+    //SetUpTrailingView
     private func setUpTrailingView(){
         titleTrailingView.layer.cornerRadius = 15
         titleTrailingView.layer.borderWidth = 1
@@ -114,6 +117,7 @@ class AddPostViewController: UIViewController {
         
     }
     
+    //ChangeTrailViewBorder
     private func changeTrailViewBorder(){
         UIView.animate(withDuration: 0.5){
             self.titleTrailingView.layer.borderColor = self.titleTextView.text! == "" ? UIColor.systemGray5.cgColor : UIColor.systemGreen.cgColor
@@ -121,28 +125,33 @@ class AddPostViewController: UIViewController {
         }
     }
     
+    //TouchKeyBoardDown
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
          self.view.endEditing(true)
     }
     
     // MARK: - button tap 메서드
     
+    //AddImageButtonTapped
     @objc func addImageButtonTapped(sender:Any?){
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
-        
         self.present(picker, animated: true)
     }
     
+    //BorrowButtonTapped
     @objc func borrowButtonTapped(sender:UIButton){
         buttonToggle = true
         setUpButton(state: buttonToggle)
     }
+    
+    //LendButtonTapped
     @objc func lendButtonTapped(sender:UIButton){
         buttonToggle = false
         setUpButton(state: buttonToggle)
     }
     
+    //DoneButtonTapped
     @objc func doneButtonTapped(sender:UIButton){
         if doneButtonToggle && choiceImage != nil{
             let formatter = DateFormatter()
@@ -179,10 +188,9 @@ class AddPostViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    //KeyBoardUp,ViewUp
     @objc func keyboardUp(notification:NSNotification) {
-        if nowTextView == 0{
-            
-        } else {
+        if nowTextView != 0{
             if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
 
                 let keyboardRectangle = keyboardFrame.cgRectValue
@@ -194,6 +202,7 @@ class AddPostViewController: UIViewController {
         }
     }
     
+    //KeyBoardDown,ViewDown
     @objc func keyboardDown() {
         self.view.transform = .identity
     }
@@ -201,9 +210,13 @@ class AddPostViewController: UIViewController {
     
 }
 
+
+// MARK: - ExtensionTextViewDelegate
+
 extension AddPostViewController: UITextViewDelegate{
+    
+    //TextViewDidChange
     func textViewDidChange(_ textView: UITextView) {
-        
         if titleTextView.text != "" && contentTextView.text != "" {
             doneButtonToggle = true
         } else {
@@ -213,6 +226,8 @@ extension AddPostViewController: UITextViewDelegate{
         setUpButton(state: buttonToggle)
         changeTrailViewBorder()
     }
+    
+    //TextViewDidBeginEditing
     func textViewDidBeginEditing(_ textView: UITextView) {
 
         if textView == self.titleTextView{
@@ -222,6 +237,9 @@ extension AddPostViewController: UITextViewDelegate{
         }
     }
 }
+
+
+// MARK: - ExtensionUiview
 
 extension UIView {
     
@@ -237,14 +255,18 @@ extension UIView {
     
 }
 
+// MARK: - Extension UinavigationControllerDelegate, UIImagePickerControllerDelegate
+
 extension AddPostViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
+    //ImagePickerControllerDidCancel
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true)
     }
     
+    //ImageDidFinishPicking
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
+    
         picker.dismiss(animated: true){ () in
             let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
             self.choiceImage = img

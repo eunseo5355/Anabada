@@ -34,39 +34,36 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUi()
-
     }
     
     // MARK: - SetUp Ui
 
-    
+    // setUpUi
     private func setUpUi() {
         makeNaviLeftButton()
         setUpAddNewPostButton()
         setUpTableView()
-
     }
     
+    //setUpTableView,register
     private func setUpTableView(){
         let nib = UINib(nibName: PostTableViewCell.identifier, bundle: nil)
         myTableView.dataSource = self
         myTableView.delegate = self
         myTableView.register(nib, forCellReuseIdentifier: PostTableViewCell.identifier)
     }
-    
+    //setUpAddButton
     private func setUpAddNewPostButton() {
         addNewPostButton.setTitle("글쓰기", for: .normal)
         addNewPostButton.addTarget(self, action: #selector(addButtonTapped(sender:)), for: .touchUpInside)
         addNewPostButton.layer.cornerRadius = 20
     }
-    
+    //tableviewReloadAnimations
     func tableviewReload(){
         UIView.transition(with: myTableView,duration: 0.5,options: .transitionCrossDissolve,animations: { self.myTableView.reloadData() })
     }
     
-
-    // MARK: - button tap 메서드
-    
+    //setUpSortedButton,Action
     private func makeNaviLeftButton() {
         
         let total = UIAction(title: "전체", handler: { _ in
@@ -97,7 +94,7 @@ class HomeViewController: UIViewController {
         menuButton.menu = menu
     }
     
-    
+    //AddButtonTappedEvent
     @objc func addButtonTapped(sender: UIButton) {
         performSegue(withIdentifier: "AddPostViewController", sender: nil)
     }
@@ -109,27 +106,27 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
+    //CellCount
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      
         return filterData.count
-
     }
 
+    //CellData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = myTableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as? PostTableViewCell else { return UITableViewCell() }
         cell.bind(filterData[indexPath.row])
         return cell
     }
     
+    //CellHegiht
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
     
+    //CellDidSelected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let nextVC = self.storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else { return }
         nextVC.bind(filterData[indexPath.row])
-        print(dataManager.myInfo.profileImage)
-//        nextVC.profileImage?.image = dataManager.myInfo.profileImage
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
