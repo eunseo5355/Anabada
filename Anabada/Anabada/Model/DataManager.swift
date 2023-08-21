@@ -15,17 +15,17 @@ class DataManager {
     
     lazy var postData: [PostData] = [
         
-        PostData(id: 0, title: "책", image: UIImage(systemName: "folder"), date: "", likeList: ["룬"], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "은서"),
-        PostData(id: 1, title: "연필", image: UIImage(systemName: "folder"), date: "", likeList: ["룬"], comments: [], bigCategory: "빌려드려요", smallCategory: "", content: "", nickName: "준영"),
-        PostData(id: 2, title: "이랑", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "이랑"),
-        PostData(id: 3, title: "안경", image: UIImage(systemName: "folder"), date: "", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "", nickName: "영하")
+        PostData(id: 0, title: "책", image: UIImage(systemName: "book"), date: "2023-08-20 12:00:00", likeList: ["룬"], comments: [], bigCategory: "필요해요", smallCategory: "", content: "책이 필요해요~", nickName: "은서"),
+        PostData(id: 1, title: "연필", image: UIImage(systemName: "pencil"), date: "2023-08-19 12:00:00", likeList: ["룬"], comments: [], bigCategory: "빌려드려요", smallCategory: "", content: "공부를 접습니다..", nickName: "준영"),
+        PostData(id: 2, title: "키보드", image: UIImage(systemName: "keyboard"), date: "2023-08-18 12:00:00", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "키보드가 필요해요~", nickName: "이랑"),
+        PostData(id: 3, title: "안경", image: UIImage(systemName: "eyeglasses"), date: "2023-07-17 12:00:00", likeList: [], comments: [], bigCategory: "필요해요", smallCategory: "", content: "안경이 필요해요~", nickName: "영하")
     ]
     
     var myInfo: UserInfo = UserInfo(nickName: "이랑", profileImage: UIImage(named: "룬"))
     
     var userData: [UserInfo] = [
         UserInfo(nickName: "은서", profileImage: UIImage(systemName: "person.fill")),
-        UserInfo(nickName: "준영", profileImage: UIImage(systemName: "folder")),
+        UserInfo(nickName: "준영", profileImage: UIImage(systemName: "person.fill")),
         UserInfo(nickName: "이랑", profileImage: UIImage(systemName: "person")),
         UserInfo(nickName: "영하", profileImage: UIImage(systemName: "person")),
     ]
