@@ -14,8 +14,9 @@ class EditProfileViewController: UIViewController {
     
     let dataManager = DataManager.shared
     
-    var changeNickNameCallBack: (() -> Void)?
-    var changeProfileImageCallBack: (() -> Void)?
+    override func viewWillAppear(_ animated: Bool) {
+        newNickName.text = dataManager.myInfo.nickName
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class EditProfileViewController: UIViewController {
     @objc private func buttonPressed(_ sender: Any) {
         if let newNickName = newNickName.text, newNickName != "" {
             dataManager.changeNickName(newNickName)
-            changeNickNameCallBack?()   // 뭔진 모르겠지만 실행해조
+            dataManager.changeProfileImage(editedProfileImageView.image!)
         }
         navigationController?.popViewController(animated: true)
     }
@@ -61,7 +62,6 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.editedProfileImageView.image = selectedImage
             dataManager.changeProfileImage(selectedImage)
-            changeProfileImageCallBack?()
         }
         dismiss(animated: true, completion: nil)
     }

@@ -21,7 +21,8 @@ class MyInfoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         configureViewWillAppear()
-
+        nickNameLabel.text = dataManager.myInfo.nickName
+        imageView.image = dataManager.myInfo.profileImage
     }
     
     override func viewDidLoad() {
@@ -38,8 +39,6 @@ class MyInfoViewController: UIViewController {
     
     private func configureViewWillAppear() {
         self.navigationController?.isNavigationBarHidden = true
-        nickNameLabel.text = dataManager.myInfo.nickName
-        imageView.image = dataManager.myInfo.profileImage
     }
     
     private func setImageView() {
@@ -79,14 +78,14 @@ class MyInfoViewController: UIViewController {
     
     @IBAction func editProfileButton(_ sender: Any) {
         guard let editProfileViewController = UIStoryboard(name: "MyInfoViewController", bundle: .none).instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else { return }
-        editProfileViewController.changeNickNameCallBack = { [weak self] in
-            guard let self else { return }
-            nickNameLabel.text = dataManager.myInfo.nickName
-        }   // editProfileViewController에 있는 changeNickNameCallBack아 어떤 식으로 저장하는진 모르겠지만 이렇게 실행해줘! 하고 정해주고 넘김
-        editProfileViewController.changeProfileImageCallBack = { [weak self] in
-            guard let self else { return }
-            imageView.image = dataManager.myInfo.profileImage
-        }
+//        editProfileViewController.changeNickNameCallBack = { [weak self] in
+//            guard let self else { return }
+//            nickNameLabel.text = dataManager.myInfo.nickName
+//        }
+//        editProfileViewController.changeProfileImageCallBack = { [weak self] in
+//            guard let self else { return }
+//            imageView.image = dataManager.myInfo.profileImage
+//        }
         navigationController?.pushViewController(editProfileViewController, animated: true)
     }
     
