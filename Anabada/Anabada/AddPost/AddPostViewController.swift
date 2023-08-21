@@ -122,8 +122,8 @@ class AddPostViewController: UIViewController {
     //ChangeTrailViewBorder
     private func changeTrailViewBorder(){
         UIView.animate(withDuration: 0.5){
-            self.titleTrailingView.layer.borderColor = self.titleTextView.text! == "" ? UIColor.systemGray5.cgColor : UIColor.systemGreen.cgColor
-            self.contentTrailingView.layer.borderColor = self.contentTextView.text! == "" ? UIColor.systemGray5.cgColor : UIColor.systemGreen.cgColor
+            self.titleTrailingView.layer.borderColor = self.titleTextView.text == "" ? UIColor.systemGray5.cgColor : UIColor.systemGreen.cgColor
+            self.contentTrailingView.layer.borderColor = self.contentTextView.text == "" ? UIColor.systemGray5.cgColor : UIColor.systemGreen.cgColor
         }
     }
     
@@ -171,12 +171,12 @@ class AddPostViewController: UIViewController {
             navigationController?.popViewController(animated: true)
         } else {
             
-            if titleTextView.text! == ""{
+            if titleTextView.text == ""{
                 UIView.animate(withDuration: 0.5){ self.titleTrailingView.layer.borderColor = UIColor.red.cgColor }
                 self.titleTrailingView.shake()
             }
             
-            if contentTextView.text! == ""{
+            if contentTextView.text == ""{
                 UIView.animate(withDuration: 0.5){ self.contentTrailingView.layer.borderColor = UIColor.red.cgColor }
                 self.contentTrailingView.shake()
             }
