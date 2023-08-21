@@ -49,5 +49,4 @@ class DetailViewController: UIViewController {
     func bind(_ postData: PostData) {
         self.postData = postData
     }
-    
 }

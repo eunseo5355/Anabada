@@ -15,6 +15,7 @@ class EditProfileViewController: UIViewController {
     let dataManager = DataManager.shared
     
     var changeNickNameCallBack: (() -> Void)?
+    var changeProfileImageCallBack: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,8 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.editedProfileImageView.image = selectedImage
-            dataManager.myInfo.profileImage = selectedImage
+            dataManager.changeProfileImage(selectedImage)
+            changeProfileImageCallBack?()
         }
         dismiss(animated: true, completion: nil)
     }
