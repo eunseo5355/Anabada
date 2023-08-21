@@ -25,6 +25,7 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
+        postTableView.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
